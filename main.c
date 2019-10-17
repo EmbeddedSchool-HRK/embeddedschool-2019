@@ -61,6 +61,26 @@ void SystemClock_Config(void);
   * @brief  The application entry point.
   * @retval int
   */
+void HeartBeat(){
+	
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+	   HAL_Delay(100);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+	   HAL_Delay(100);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+	   HAL_Delay(200);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+	   HAL_Delay(200);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+	   HAL_Delay(300);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+	   HAL_Delay(300);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
+	   HAL_Delay(400);
+	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+	   HAL_Delay(400);	
+	
+	};
 
 int main(void)
 {
@@ -94,22 +114,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-	   HAL_Delay(100);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
-	   HAL_Delay(100);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-	   HAL_Delay(200);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-	   HAL_Delay(200);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
-	   HAL_Delay(300);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
-	   HAL_Delay(300);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
-	   HAL_Delay(400);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
-	   HAL_Delay(400);	
+
+	   HeartBeat();
   }
   /* USER CODE END 3 */
 }
