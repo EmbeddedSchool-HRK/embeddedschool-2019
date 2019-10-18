@@ -34,7 +34,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+<<<<<<< HEAD
 
+=======
+#define PERIOD 1000
+#define DUTY_CYCLE 500
+>>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,7 +67,11 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
+<<<<<<< HEAD
 
+=======
+void Heartbeat(int period, int duty_cycle);
+>>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -115,8 +124,21 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+<<<<<<< HEAD
   }
   /* USER CODE END 3 */
+=======
+    Heartbeat(PERIOD,DUTY_CYCLE);
+  }
+    /* USER CODE END 3 */
+}
+
+void Heartbeat(int period, int duty_cycle) {
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  HAL_Delay(duty_cycle);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  HAL_Delay(period-uty_cycle);
+>>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
 }
 
 /**
