@@ -1,0 +1,14 @@
+main.c:83:5:main	8	static
+main.c:129:6:all_builtin_led_set	8	static
+main.c:137:6:all_builtin_led_reset	8	static
+main.c:145:6:blink_builtin_led_orange	16	static
+main.c:154:6:blink_builtin_led_blue	16	static
+main.c:163:6:blink_builtin_led_green	16	static
+main.c:172:6:blink_builtin_led_red	16	static
+main.c:181:6:my_blink	16	static
+main.c:201:6:SystemClock_Config	104	static
+main.c:252:13:MX_I2C1_Init	8	static
+main.c:286:13:MX_I2S3_Init	8	static
+main.c:320:13:MX_SPI1_Init	8	static
+main.c:358:13:MX_GPIO_Init	56	static
+main.c:453:6:Error_Handler	4	static
