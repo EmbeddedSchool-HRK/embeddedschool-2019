@@ -1,2 +1,7 @@
 *.mk
 *.list
+*.su
+*.d
+*.o
+*.launch
+* makefile
