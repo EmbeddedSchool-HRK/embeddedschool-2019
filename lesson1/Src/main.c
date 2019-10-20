@@ -64,10 +64,10 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN PFP */
 void all_builtin_led_set(void);
 void all_builtin_led_reset(void);
-void blink_builtin_led_orange(uint8_t dly);
-void blink_builtin_led_blue(uint8_t dly);
-void blink_builtin_led_red(uint8_t dly);
-void blink_builtin_led_green(uint8_t dly);
+void blink_builtin_led_orange(uint32_t dly);
+void blink_builtin_led_blue(uint32_t dly);
+void blink_builtin_led_red(uint32_t dly);
+void blink_builtin_led_green(uint32_t dly);
 void my_blink(uint8_t dly);
 /* USER CODE END PFP */
 
@@ -119,6 +119,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
+    my_blink(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -141,7 +142,7 @@ void all_builtin_led_reset(void)
 	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
 }
 
-void blink_builtin_led_orange(uint8_t dly)
+void blink_builtin_led_orange(uint32_t dly)
 {
 	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
 
@@ -150,7 +151,7 @@ void blink_builtin_led_orange(uint8_t dly)
 	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
 }
 
-void blink_builtin_led_blue  (uint8_t dly)
+void blink_builtin_led_blue  (uint32_t dly)
 {
 	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
 
@@ -159,7 +160,7 @@ void blink_builtin_led_blue  (uint8_t dly)
 	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
 }
 
-void blink_builtin_led_green (uint8_t dly)
+void blink_builtin_led_green (uint32_t dly)
 {
 	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
 
@@ -168,7 +169,7 @@ void blink_builtin_led_green (uint8_t dly)
 	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
 }
 
-void blink_builtin_led_red   (uint8_t dly)
+void blink_builtin_led_red   (uint32_t dly)
 {
 	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
 
@@ -177,7 +178,7 @@ void blink_builtin_led_red   (uint8_t dly)
 	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
 }
 
-void my_blink(uint8_t dly)
+void my_blink(uint32_t dly)
 {
 	all_builtin_led_set();
 
