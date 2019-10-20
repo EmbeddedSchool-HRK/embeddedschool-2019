@@ -118,9 +118,79 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+
+void all_builtin_led_set(void)
+{
+	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin,   GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin,   GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin,   GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin,   GPIO_PIN_SET);
+}
+
+void all_builtin_led_reset(void)
+{
+	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+}
+
+void blink_builtin_led_orange(uint8_t dly)
+{
+	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+
+	HAL_Delay(dly);
+
+	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+}
+
+void blink_builtin_led_blue  (uint8_t dly)
+{
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+
+	HAL_Delay(dly);
+
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+}
+
+void blink_builtin_led_green (uint8_t dly)
+{
+	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+
+	HAL_Delay(dly);
+
+	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+}
+
+void blink_builtin_led_red   (uint8_t dly)
+{
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+
+	HAL_Delay(dly);
+
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+}
+
+void my_blink(uint8_t dly)
+{
+	all_builtin_led_set();
+
+	HAL_Delay(dly);
+
+	all_builtin_led_reset();
+
+	while ( 1 ) {
+		blink_builtin_led_orange(dly);
+		blink_builtin_led_blue(dly);
+		blink_builtin_led_green(dly);
+		blink_builtin_led_red(dly);
+	}
 }
 
 /**
