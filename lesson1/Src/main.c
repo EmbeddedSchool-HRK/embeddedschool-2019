@@ -62,6 +62,13 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
+void all_builtin_led_set(void);
+void all_builtin_led_reset(void);
+void blink_builtin_led_orange(uint8_t dly);
+void blink_builtin_led_blue(uint8_t dly);
+void blink_builtin_led_red(uint8_t dly);
+void blink_builtin_led_green(uint8_t dly);
+void my_blink(uint8_t dly);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
