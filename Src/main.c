@@ -34,7 +34,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define PERIOD 500
+#define DUTYCYCLE 100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -116,9 +117,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-    HAL_Delay(100);
+    HAL_Delay(DUTYCYCLE);
     HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-    HAL_Delay(500);
+    HAL_Delay(PERIOD);
 
   }
   /* USER CODE END 3 */
