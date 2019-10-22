@@ -11,6 +11,7 @@ Debug/
 Drivers/
 Middlewares/
 Startup/
+MDK-ARM/
 *.mxproject
 *.scratch
 
@@ -58,6 +59,14 @@ sbteclipse plugin
 
 #STS (Spring Tool Suite)
 *.springBeans
+
+# User-specific uVision files
+*.opt
+*.uvopt
+*.uvoptx
+*.uvgui
+*.uvgui.*
+*.uvguix.*
 
 #Code Recommenders
 .recommenders/
