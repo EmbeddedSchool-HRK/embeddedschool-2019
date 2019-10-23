@@ -62,7 +62,7 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
-
+void Heartbeat(uint32_t period, uint32_t dutycycle);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -115,6 +115,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+    Heartbeat(500, 100);
   
   }
   /* USER CODE END 3 */
@@ -369,7 +370,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void Heartbeat(uint32_t period, uint32_t dutycycle)
+{
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+	HAL_Delay(dutycycle);
+	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+	HAL_Delay(period-dutycycle);
+}
 /* USER CODE END 4 */
 
 /**
