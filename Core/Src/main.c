@@ -43,7 +43,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t isRunning = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
