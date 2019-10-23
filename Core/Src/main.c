@@ -90,6 +90,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  LightUpAllLEDs(1000ul);
 
   /* USER CODE END 2 */
 
@@ -100,15 +101,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (isRunning)
-	  {
-		  LightUpOnebyOne(1000ul);
-	  }
-	  else
-	  {
-		  LightUpAllLEDs(1000ul);
-		  isRunning = 1;
-	  }
+	  LightUpOnebyOne(1000ul);
   }
   /* USER CODE END 3 */
 }
