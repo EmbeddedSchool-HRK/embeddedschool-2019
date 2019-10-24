@@ -1,0 +1,72 @@
+## This .gitignore is created to ignore all temporary files created by IDE, build results etc.
+## Default eclipse .gitignore is used and improved with addition of STMCube32IDE specific stuff.
+## so we are left with essentially only files that are required to run the project on any machine after...
+## ...cloning the project from remote repo.
+
+.settings/
+.metadata
+bin/
+tmp/
+Debug/
+Drivers/
+Middlewares/
+Startup/
+MDK-ARM/
+*.mxproject
+*.scratch
+
+##linker files
+*.ld
+
+*.tmp
+*.bak
+*.swp
+~.nib
+#local.properties
+
+*.loadpath
+*.recommenders
+
+#Eclipse Core
+RemoteSystemsTempFiles/
+
+#External tool builders
+.externalToolBuilders/
+
+#Locally stored Eclipse launch configurations
+*.launch
+
+#CDT-specific (C/C++ Development Tooling)
+*.cproject
+
+#JDT-specific (Eclipse Java Development Tools)
+*.classpath
+
+Java annotation processor (APT)
+*.factorypath
+
+PDT-specific (PHP Development Tools)
+*.buildpath
+
+sbteclipse plugin
+*.target
+
+#Tern plugin
+*.tern-project
+
+#TeXlipse plugin
+*.texlipse
+
+#STS (Spring Tool Suite)
+*.springBeans
+
+# User-specific uVision files
+*.opt
+*.uvopt
+*.uvoptx
+*.uvgui
+*.uvgui.*
+*.uvguix.*
+
+#Code Recommenders
+.recommenders/
