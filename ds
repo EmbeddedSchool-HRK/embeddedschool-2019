@@ -1,0 +1,48 @@
+[33mcommit b222edce6e30111b809b775927307dbf3e0b9910[m[33m ([m[1;36mHEAD -> [m[1;32mEduard.Zchludkin[m[33m)[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Fri Oct 25 22:12:44 2019 +0300
+
+    Add LED_On/LED_Off function to Heartbeat
+
+[33mcommit 9412ee0e34b913797d6e5f74c10cdeeacf64c045[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Fri Oct 25 21:57:13 2019 +0300
+
+    Edit HAL_GPIO_WritePin function
+
+[33mcommit 0ba5315d6bfdb6ed3eee43d8cc329fd949110963[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Fri Oct 25 21:33:45 2019 +0300
+
+    Add LEDS Array and LEDS On/Off functions (just add, not used)
+
+[33mcommit d5303580a1a9e73b5683f72eec59e82342c59bee[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Fri Oct 25 01:29:13 2019 +0300
+
+    Lesson 1: Heartbeat
+    Add correct project whith main.c file
+
+[33mcommit 12047092b746dc470cc3834f44d91b7b9d023dc0[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Sun Oct 20 16:56:24 2019 +0300
+
+    Modify .gitignore
+
+[33mcommit 2b1ac0bfa26c1b4b5a4fd10cbf9bfbab0856d1c4[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Sun Oct 20 16:25:01 2019 +0300
+
+    Add .gitignore
+
+[33mcommit cbd4d16d232e1e5eb03d283603c073a2a117b56e[m
+Author: ExtendedVoid <eeeddd96@mail.ru>
+Date:   Sun Oct 20 16:22:42 2019 +0300
+
+    First commit on branch
+
+[33mcommit e921277dbbeea2d1c04135b925dc2851cb655013[m
+Author: Sergii Aksonov <aksonov.sergei@gmail.com>
+Date:   Wed Sep 25 20:57:13 2019 +0300
+
+    Initial commit
