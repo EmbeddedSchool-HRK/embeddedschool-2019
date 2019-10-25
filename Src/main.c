@@ -127,6 +127,28 @@ int main(void)
        	{
        		Hearbeat();
        	}
+    HAL_GPIO_WritePin(GPIOD, LD4_Pin|GPIO_PIN_13|GPIO_PIN_14|LD6_Pin, GPIO_PIN_SET);
+    HAL_Delay(5000);
+    HAL_GPIO_WritePin(GPIOD, LD4_Pin|GPIO_PIN_13|GPIO_PIN_14|LD6_Pin, GPIO_PIN_RESET);
+    HAL_Delay(50);
+   	for(;;)
+        {
+          HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13, GPIO_PIN_SET);
+          HAL_Delay(700);
+          HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13, GPIO_PIN_RESET);
+
+          HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_SET);
+       	  HAL_Delay(700);
+       	  HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
+
+          HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
+       	  HAL_Delay(700);
+       	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+
+       	  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+       	  HAL_Delay(700);
+       	  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+         }
 
   }
   /* USER CODE END 3 */
