@@ -65,6 +65,8 @@ void HeartBeat(void);
 void AllLedON(void);
 void AllLedOFF(void);
 void LedBeacon(_Bool LedState);
+void LED_On(LedName);
+void LED_Off(LedName);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -86,13 +88,22 @@ int main(void)
 		char GPIO_PIN;
 	};
 
-	struct LED Leds[] =
+	struct LED LEDS[] =
 	{
 		"Orange", "LD3_GPIO_Port", "LD3_Pin",
 		"Green", "LD4_GPIO_Port", "LD4_Pin",
 		"Red", "LD5_GPIO_Port", "LD5_Pin",
-		"Blue", "LD6_GPIO_Port", "LD6_Pin",
+		"Blue", "LD6_GPIO_Port", "LD6_Pin"
 	};
+
+	void LED_On(LedName)
+	{
+		HAL_GPIO_WritePin(LEDS[LedName].GPIO_PORT, LEDS[LedName].GPIO_PIN, GPIO_PIN_SET);
+	}
+	void LED_Off(LedName)
+	{
+		HAL_GPIO_WritePin(LEDS[LedName].GPIO_PORT, LEDS[LedName].GPIO_PIN, GPIO_PIN_RESET);
+	}
   /* USER CODE END 1 */
   
 
