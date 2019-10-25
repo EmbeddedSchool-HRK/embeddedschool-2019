@@ -65,8 +65,8 @@ void HeartBeat(void);
 void AllLedON(void);
 void AllLedOFF(void);
 void LedBeacon(_Bool LedState);
-void LED_On(LedName);
-void LED_Off(LedName);
+void LED_On(char LedName);
+void LED_Off(char LedName);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -96,11 +96,11 @@ int main(void)
 		"Blue", "LD6_GPIO_Port", "LD6_Pin"
 	};
 
-	void LED_On(LedName)
+	void LED_On(char LedName)
 	{
 		HAL_GPIO_WritePin(LEDS[LedName].GPIO_PORT, LEDS[LedName].GPIO_PIN, GPIO_PIN_SET);
 	}
-	void LED_Off(LedName)
+	void LED_Off(char LedName)
 	{
 		HAL_GPIO_WritePin(LEDS[LedName].GPIO_PORT, LEDS[LedName].GPIO_PIN, GPIO_PIN_RESET);
 	}
@@ -153,9 +153,11 @@ int main(void)
 }
 void HeartBeat()
 {
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+	LED_On("Blue");
+	//HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
 	HAL_Delay(500);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+	LED_Off("Blue");
+	//HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
 	HAL_Delay(500);
 }
 
