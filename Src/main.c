@@ -21,7 +21,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -80,7 +79,20 @@ void LedBeacon(_Bool LedState);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	struct LED
+	{
+		char LedName;
+		char GPIO_PORT;
+		char GPIO_PIN;
+	};
 
+	struct LED Leds[] =
+	{
+		"Orange", "LD3_GPIO_Port", "LD3_Pin",
+		"Green", "LD4_GPIO_Port", "LD4_Pin",
+		"Red", "LD5_GPIO_Port", "LD5_Pin",
+		"Blue", "LD6_GPIO_Port", "LD6_Pin",
+	};
   /* USER CODE END 1 */
   
 
