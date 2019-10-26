@@ -74,7 +74,14 @@ void MX_USB_HOST_Process(void);
   * @brief  The application entry point.
   * @retval int
   */
-
+void Heartbeat()
+ {
+	int n = 300;
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+	HAL_Delay(n);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+	HAL_Delay(n);
+ }
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -116,7 +123,10 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-
+    for(int i = 0; i<5; i++)
+       	{
+       		Heartbeat();
+       	}
 
   }
   /* USER CODE END 3 */
