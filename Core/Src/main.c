@@ -43,7 +43,28 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+typedef enum LED_COLOR
+{
+	Green = 0,
+	Red,
+	Orange,
+	Blue
+} LED_COLOR;
 
+typedef struct LED
+{
+	unsigned int Port;
+	unsigned int Pin;
+} LED;
+
+LED LEDS[4] =
+{
+	{LD4_GPIO_Port, LD4_Pin},
+	{LD5_GPIO_Port, LD5_Pin},
+	{LD3_GPIO_Port, LD3_Pin},
+	{LD6_GPIO_Port, LD6_Pin}
+
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -53,6 +74,9 @@ static void MX_GPIO_Init(void);
 void Heartbeat(uint32_t, uint32_t);
 void LightUpAllLEDs(uint32_t time);
 void LightUpOnebyOne(uint32_t time);
+
+void LED_On(LED_COLOR led_color);
+void LED_Off(LED_COLOR led_color);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -179,34 +203,46 @@ void Heartbeat(uint32_t period, uint32_t dutycycle)
 
 void LightUpAllLEDs(uint32_t time)
 {
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+	LED_On(Blue);
+	LED_On(Red);
+	LED_On(Orange);
+	LED_On(Green);
+
 	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+
+	LED_Off(Blue);
+	LED_Off(Red);
+	LED_Off(Orange);
+	LED_Off(Green);
 }
 
 void LightUpOnebyOne(uint32_t time)
 {
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+	LED_On(Orange);
 	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+	LED_Off(Orange);
 
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+	LED_On(Blue);
 	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+	LED_Off(Blue);
 
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+	LED_On(Green);
 	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+	LED_Off(Green);
 
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+	LED_On(Red);
 	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+	LED_Off(Red);
+}
+
+void LED_On(LED_COLOR led_color)
+{
+	HAL_GPIO_WritePin(LEDS[led_color].Port, LEDS[led_color].Pin, GPIO_PIN_SET);
+}
+
+void LED_Off(LED_COLOR led_color)
+{
+	HAL_GPIO_WritePin(LEDS[led_color].Port, LEDS[led_color].Pin, GPIO_PIN_RESET);
 }
 /* USER CODE END 4 */
 
