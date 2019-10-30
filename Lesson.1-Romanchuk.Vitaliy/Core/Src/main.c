@@ -103,12 +103,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+    HAL_GPIO_WritePin (GPIOD, (GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_SET);
+    HAL_Delay(5000);
+    HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_RESET);
+    HAL_Delay(500);
+
   }
   /* USER CODE END 3 */
 }
