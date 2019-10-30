@@ -1,5 +1,0 @@
-main.c:74:5:main	8	static
-main.c:122:6:five_minutes_function	8	static
-main.c:128:6:cross_blinking_function	8	static
-main.c:151:6:SystemClock_Config	104	static
-main.c:205:6:Error_Handler	4	static
