@@ -54,12 +54,9 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void MX_USB_HOST_Process(void);
-
-
-
 /* USER CODE BEGIN PFP */
-	void five_minutes_function();
-	void cross_blinking_function();
+void five_minutes_function();
+void cross_blinking_function();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -111,37 +108,37 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-	 five_minutes_function(5000, 5500);
-    while (1) {
-	 cross_blinking_function(1000, 500);
-    }
-  }
+  five_minutes_function(5000, 5500);
+ while (1) {
+  cross_blinking_function(1000, 500);
+ }
+}
   /* USER CODE END 3 */
 }
 
 void five_minutes_function(dutycycle, period) {
-	HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
-	HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
+HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_SET);
+HAL_Delay(dutycycle);
+HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_RESET);
+HAL_Delay(period - dutycycle);
 }
 void cross_blinking_function(dutycycle, period) {
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
+HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+HAL_Delay(period - dutycycle);
+HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+HAL_Delay(dutycycle);
+HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+HAL_Delay(period - dutycycle);
+HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+HAL_Delay(dutycycle);
+HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+HAL_Delay(period - dutycycle);
+HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+HAL_Delay(dutycycle);
+HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+HAL_Delay(period - dutycycle);
+HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+HAL_Delay(dutycycle);
 }
 
 /**
