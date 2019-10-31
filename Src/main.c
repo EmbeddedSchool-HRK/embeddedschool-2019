@@ -65,6 +65,9 @@ void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
 void HeartBeat(uint32_t period, uint32_t dutycycle);
+void All_LD_Lihgt(uint32_t AllLight);
+void Cross_Lighting(uint32_t Diode_glow_time, uint32_t Diode_on_delay);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -107,6 +110,8 @@ int main(void)
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
 
+  All_LD_Lihgt(5000);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -117,7 +122,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-  HeartBeat(500,100);
+  Cross_Lighting(250, 50);
   }
   /* USER CODE END 3 */
 }
@@ -129,6 +134,35 @@ void HeartBeat(uint32_t period, uint32_t dutycycle) {
   HAL_Delay(dutycycle);
   HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
   HAL_Delay(period-dutycycle);
+}
+void All_LD_Lihgt(uint32_t AllLight) {
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+  HAL_Delay(AllLight);
+}
+void Cross_Lighting(uint32_t Diode_glow_time, uint32_t Diode_on_delay) {
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  HAL_Delay(Diode_glow_time+Diode_on_delay);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  HAL_Delay(Diode_on_delay);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+  HAL_Delay(Diode_glow_time+Diode_on_delay);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+  HAL_Delay(Diode_on_delay);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+  HAL_Delay(Diode_glow_time+Diode_on_delay);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+  HAL_Delay(Diode_on_delay);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_Delay(Diode_glow_time+Diode_on_delay);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+  HAL_Delay(Diode_on_delay);
 }
 /**
   * @brief System Clock Configuration
