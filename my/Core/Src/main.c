@@ -61,7 +61,8 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
-
+void Init_Blink();
+void Infinite_Blink();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -101,7 +102,7 @@ int main(void) {
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-
+  Init_Blink(5000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -111,10 +112,6 @@ int main(void) {
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-    HAL_Delay(500);
-    HAL_GPIO_WritePin(LD3_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -357,6 +354,30 @@ static void MX_GPIO_Init(void) {
 }
 
 /* USER CODE BEGIN 4 */
+void Infinite_Blink(uint32_t delay_time) {
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  HAL_Delay(delay_time);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+  HAL_Delay(delay_time);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+  HAL_Delay(delay_time);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_Delay(delay_time);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+}
+
+void Init_Blink(uint32_t Start_time) {
+
+  HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_SET);
+
+  HAL_Delay(Start_time);
+
+  HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin,
+      GPIO_PIN_RESET);
+}
 
 /* USER CODE END 4 */
 
