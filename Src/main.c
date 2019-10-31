@@ -64,7 +64,7 @@ void MX_USB_HOST_Process(void);
 
 
 /* USER CODE BEGIN PFP */
-void HeartBeat();
+void HeartBeat(uint32_t period, uint32_t dutycycle);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -117,18 +117,18 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-  HeartBeat();
+  HeartBeat(500,100);
   }
   /* USER CODE END 3 */
 }
 
 
 
-void HeartBeat() {
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  HAL_Delay(200);
+void HeartBeat(uint32_t period, uint32_t dutycycle) {
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_Delay(dutycycle);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+  HAL_Delay(period-dutycycle);
 }
 /**
   * @brief System Clock Configuration
