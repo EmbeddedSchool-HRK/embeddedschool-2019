@@ -35,9 +35,13 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #define PERIOD 1000
+=======
+#define STARTUP 1000
+>>>>>>> d02b07e... Lesson 1. Implement LEDs blinking by scenario
 #define DUTY_CYCLE 500
 >>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
 /* USER CODE END PD */
@@ -68,10 +72,15 @@ void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 void Heartbeat(int period, int duty_cycle);
 >>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
+=======
+void Startup(int startup);
+void Heartbeat(int duty_cycle);
+>>>>>>> d02b07e... Lesson 1. Implement LEDs blinking by scenario
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -113,7 +122,11 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
+<<<<<<< HEAD
 
+=======
+  Startup(STARTUP);
+>>>>>>> d02b07e... Lesson 1. Implement LEDs blinking by scenario
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,20 +138,48 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
   /* USER CODE END 3 */
 =======
     Heartbeat(PERIOD,DUTY_CYCLE);
+=======
+    Heartbeat(DUTY_CYCLE);
+>>>>>>> d02b07e... Lesson 1. Implement LEDs blinking by scenario
   }
     /* USER CODE END 3 */
 }
 
-void Heartbeat(int period, int duty_cycle) {
+void Startup(int startup) {
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  HAL_Delay(startup);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+}
+
+void Heartbeat(int duty_cycle) {
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
   HAL_Delay(duty_cycle);
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+<<<<<<< HEAD
   HAL_Delay(period-uty_cycle);
 >>>>>>> c9d1488... Lesson 1. Implement function Heartbeat
+=======
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+  HAL_Delay(duty_cycle);
+  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+  HAL_Delay(duty_cycle);
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+  HAL_Delay(duty_cycle);
+  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+>>>>>>> d02b07e... Lesson 1. Implement LEDs blinking by scenario
 }
 
 /**
