@@ -9,17 +9,18 @@
 #include "drvLEDs.h"
 #include "drvLEDs_FourLigtRun.h"
 
+uint16_t LEDPatternRun[] = {
+  LED_Green,  LED_Orange, LED_Red,    LED_Orange,
+  LED_Green,  LED_Red,    LED_Orange, LED_Green,
+  LED_Orange, LED_Red
+};
+
+int LEDPatternRunSize = sizeof(LEDPatternRun)/sizeof(uint16_t);
+
 void drvLEDs_FourLightRun(uint32_t period) {
-  drvLEDs_Off(LED_Red);
-  drvLEDs_On(LED_Orange);
-  HAL_Delay(period);
-  drvLEDs_Off(LED_Orange);
-  drvLEDs_On(LED_Blue);
-  HAL_Delay(period);
-  drvLEDs_Off(LED_Blue);
-  drvLEDs_On(LED_Green);
-  HAL_Delay(period);
-  drvLEDs_Off(LED_Green);
-  drvLEDs_On(LED_Red);
-  HAL_Delay(period);
+  for (int i = 0; i<LEDPatternRunSize; i++){
+    drvLEDs_On(LEDPatternRun[i]);
+    HAL_Delay(period);
+    drvLEDs_Off(LEDPatternRun[i]);
+  }
 }
