@@ -24,7 +24,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "driver_LEDs.h"
+#include "heartbeat_run.h"
 #include "heartbeat.h"
+#include "startup.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,9 +36,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define PERIOD 1000
 #define DUTY_CYCLE 500
-#define COLOR LED_RED
+#define PERIOD 1000
+#define STARTUP 5000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -106,7 +108,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-
+  Startup(STARTUP);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -117,7 +119,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    Heartbeat(COLOR, PERIOD, DUTY_CYCLE);
+    Heartbeat_Run(DUTY_CYCLE);
   }
     /* USER CODE END 3 */
 }
