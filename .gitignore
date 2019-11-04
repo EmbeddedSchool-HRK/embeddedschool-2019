@@ -1,0 +1,11 @@
+.settings/
+Debug/
+Drivers/
+Middlawares/
+.cproject
+.mxproject
+.project
+Lesson-1-Romanchuk-Vitaliy-HeartBeat Debug.launch
+Lesson-1-Romanchuk-Vitaliy-HeartBeat.ioc
+STM32F407VGTX_FLASH.ld
+STM32F407VGTX_RAM.ld
