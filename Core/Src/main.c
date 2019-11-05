@@ -98,7 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Heartbeat(LED_RED, 800ul, 100ul);
+	  LedsQueue_d(100ul);
   }
   /* USER CODE END 3 */
 }

@@ -34,6 +34,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
 #include "hearbeat.h"
+#include "ledsQueue.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
