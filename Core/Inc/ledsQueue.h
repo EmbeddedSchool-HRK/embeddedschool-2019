@@ -12,4 +12,6 @@
 
 void LedsQueue_d(uint32_t time);
 
+void LedsQueue(led_color_t* leds_queue, uint32_t count, uint32_t time);
+
 #endif /* INC_HEARBEAT_H_ */

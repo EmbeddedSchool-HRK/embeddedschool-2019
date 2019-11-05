@@ -98,7 +98,21 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  LedsQueue_d(100ul);
+	  led_color_t leds_queue[] =
+	  {
+			  LED_BLUE,
+			  LED_RED,
+			  LED_RED,
+			  LED_GREEN,
+			  LED_GREEN,
+			  LED_ORANGE,
+			  LED_GREEN,
+			  LED_GREEN,
+			  LED_RED,
+			  LED_RED
+	  };
+	  uint32_t n_elements = sizeof(leds_queue) / sizeof(leds_queue[0]);
+	  LedsQueue(leds_queue, n_elements, 100ul);
   }
   /* USER CODE END 3 */
 }

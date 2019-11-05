@@ -26,3 +26,14 @@ void LedsQueue_d(uint32_t time)
 	HAL_Delay(time);
 	drvLed_off(LED_RED);
 }
+
+
+void LedsQueue(led_color_t* leds_queue, uint32_t count, uint32_t time)
+{
+	for (uint32_t i = 0; i < count; i++)
+	{
+		drvLed_on(leds_queue[i]);
+		HAL_Delay(time);
+		drvLed_off(leds_queue[i]);
+	}
+}
