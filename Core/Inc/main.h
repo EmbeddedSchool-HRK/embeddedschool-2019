@@ -32,7 +32,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "drvLeds.h"
+#include "hearbeat.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
