@@ -15,7 +15,6 @@ typedef enum {
   Led_Red
 }leds_t;
 void drvLeds_on(leds_t ledName);
-
 void drvLeds_off(leds_t ledName);
 
 #endif /* SRC_DRVLEDS_H_ */

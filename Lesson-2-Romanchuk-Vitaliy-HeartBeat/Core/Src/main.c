@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
+#include "HeartBeat.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
