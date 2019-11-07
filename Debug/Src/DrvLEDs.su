@@ -1,0 +1,2 @@
+DrvLEDs.c:26:6:DrvLEDs_on	16	static
+DrvLEDs.c:32:6:DrvLEDs_off	16	static
