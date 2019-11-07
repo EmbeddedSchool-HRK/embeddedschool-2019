@@ -21,10 +21,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "drvLeds.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -129,10 +128,10 @@ int main(void)
 
 
 
-void HeartBeat(uint32_t period, uint32_t dutycycle) {
-  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
+void HeartBeat(uint32_t period, uint32_t dutycycle){
+  drvLeds_on(LED_RED);
   HAL_Delay(dutycycle);
-  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
+  drvLeds_off(LED_RED);
   HAL_Delay(period-dutycycle);
 }
 void All_LD_Lihgt(uint32_t AllLight) {
