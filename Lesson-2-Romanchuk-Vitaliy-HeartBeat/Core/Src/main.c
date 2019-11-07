@@ -74,8 +74,7 @@ void MX_USB_HOST_Process(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void) {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -114,6 +113,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+  five_minutes_func(1500, 750);
 }
     /* USER CODE END 3 */
 }
