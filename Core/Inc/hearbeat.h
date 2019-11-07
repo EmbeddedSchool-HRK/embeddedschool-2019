@@ -1,0 +1,15 @@
+/*
+ * hearbeat.h
+ *
+ *  Created on: 5 нояб. 2019 г.
+ *      Author: S1ckret
+ */
+
+#ifndef INC_HEARBEAT_H_
+#define INC_HEARBEAT_H_
+
+#include "drvLeds.h"
+
+void Heartbeat(led_color_t led_color, uint32_t period, uint32_t dutycycle);
+
+#endif /* INC_HEARBEAT_H_ */
