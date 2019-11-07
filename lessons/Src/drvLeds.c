@@ -14,8 +14,10 @@ typedef struct {
 }led_t;
 
 led_t leds[LED_AMOUNT] = {
-    {LD3_GPIO_Port, LD3_Pin}, //LED_GREEN
-    {LD4_GPIO_Port, LD4_Pin}  //LED_RED
+  {LD3_GPIO_Port, LD3_Pin}, //LED_ORANE
+  {LD6_GPIO_Port, LD6_Pin}, //LED_BLUE
+  {LD5_GPIO_Port, LD5_Pin}, //LED_RED
+  {LD4_GPIO_Port, LD4_Pin}, //LED_GREEN
 };
 
 void drvLeds_on(ledsList_t ledName) {

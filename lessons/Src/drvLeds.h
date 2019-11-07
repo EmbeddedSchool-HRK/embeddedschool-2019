@@ -9,8 +9,10 @@
 #define DRVLEDS_H_
 
 typedef enum {
-  LED_GREEN,
+  LED_ORANGE,
+  LED_BLUE,
   LED_RED,
+  LED_GREEN,
   LED_AMOUNT
 }ledsList_t;
 

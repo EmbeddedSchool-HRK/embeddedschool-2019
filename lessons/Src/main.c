@@ -115,7 +115,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    Heartbeat(500,1000);
+    Heartbeat_run(500,1000);
   }
   /* USER CODE END 3 */
 }
