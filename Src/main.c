@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
+#include "drvLeds_CrossLightning.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,7 +66,7 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN PFP */
 void HeartBeat(uint32_t period, uint32_t dutycycle);
 void All_LD_Lihgt(uint32_t AllLight);
-void Cross_Lighting(uint32_t Diode_glow_time, uint32_t Diode_on_delay);
+
 
 /* USER CODE END PFP */
 
@@ -121,7 +122,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-  Cross_Lighting(250, 50);
+    drvLeds_CrossLightning(250, 50);
   }
   /* USER CODE END 3 */
 }
@@ -141,28 +142,7 @@ void All_LD_Lihgt(uint32_t AllLight) {
   HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
   HAL_Delay(AllLight);
 }
-void Cross_Lighting(uint32_t Diode_glow_time, uint32_t Diode_on_delay) {
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-  HAL_Delay(Diode_glow_time+Diode_on_delay);
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-  HAL_Delay(Diode_on_delay);
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-  HAL_Delay(Diode_glow_time+Diode_on_delay);
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  HAL_Delay(Diode_on_delay);
-  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-  HAL_Delay(Diode_glow_time+Diode_on_delay);
-  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-  HAL_Delay(Diode_on_delay);
-  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-  HAL_Delay(Diode_glow_time+Diode_on_delay);
-  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-  HAL_Delay(Diode_on_delay);
-}
+
 /**
   * @brief System Clock Configuration
   * @retval None
