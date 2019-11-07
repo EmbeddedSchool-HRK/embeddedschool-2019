@@ -114,6 +114,7 @@ int main(void) {
 
     /* USER CODE BEGIN 3 */
   five_minutes_func(1500, 750);
+  four_minutes_func(1500);
 }
     /* USER CODE END 3 */
 }

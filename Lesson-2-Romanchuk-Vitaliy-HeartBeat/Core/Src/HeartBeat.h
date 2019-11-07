@@ -12,5 +12,6 @@
 #include "main.h"
 
 void five_minutes_func(uint32_t period, uint32_t dutycycle);
+void four_minutes_func(uint32_t period);
 
 #endif /* SRC_HEARTBEAT_H_ */
