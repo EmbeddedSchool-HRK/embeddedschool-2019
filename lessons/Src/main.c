@@ -24,7 +24,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "drvLeds.h"
+#include "heartbeat.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,6 +115,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+    Heartbeat(500,1000);
   }
   /* USER CODE END 3 */
 }

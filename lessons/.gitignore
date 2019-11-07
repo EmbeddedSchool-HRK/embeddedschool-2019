@@ -1,5 +1,5 @@
 #Everything inside /Debug/
 /Debug/**
 # some .ilf.launch file
-KH_embeddedschool-2019.elf.launch
+*.elf.launch
 # .gitignore himself
