@@ -62,8 +62,7 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
-void all_leds_glow(uint32_t time);
-void serial_blinking(uint32_t time);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -105,7 +104,6 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-  all_leds_glow(5000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -116,37 +114,8 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    serial_blinking(1000);
   }
   /* USER CODE END 3 */
-}
-
-void all_leds_glow(uint32_t time) {
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET); // orange led on
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET); // green led on
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET); // red led on
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET); // blue led on
-	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET); // orange led off
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET); // green led off
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET); // red led off
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET); // blue led off
-}
-
-void serial_blinking(uint32_t time) {
- // orange[3] > blue[6] > red[5] > green[4]
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-	HAL_Delay(time);
-	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
 }
 
 /**
