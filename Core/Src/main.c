@@ -98,6 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
 	  led_color_t leds_queue[] =
 	  {
 			  LED_BLUE,
