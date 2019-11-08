@@ -66,6 +66,8 @@ void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
 
+void HeartBeat();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -119,13 +121,17 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+  HeartBeat();
+
+  }
+  /* USER CODE END 3 */
+}
+
+void HeartBeat() {
   HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
   HAL_Delay(PERIOD);
   HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
   HAL_Delay(PERIOD - DUTY_CYCLE);
-
-  }
-  /* USER CODE END 3 */
 }
 
 /**
