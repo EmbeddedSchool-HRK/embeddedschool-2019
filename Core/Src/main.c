@@ -120,6 +120,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+  drvLEDs_HeartBeat();
   drvLEDs_FourLightRun();
 
   }
