@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "drvLEDs.h"
+#include "drvLEDs_HeartBeat.h"
 
 /* USER CODE END Includes */
 
@@ -69,7 +70,6 @@ void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
 
-void HeartBeat();
 void AllLight();
 void FourLightRun();
 
@@ -114,7 +114,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-  AllLight();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,17 +126,10 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-  FourLightRun();
+  drvLEDs_HeartBeat();
 
   }
   /* USER CODE END 3 */
-}
-
-void HeartBeat() {
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-  HAL_Delay(PERIOD);
-  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  HAL_Delay(PERIOD - DUTY_CYCLE);
 }
 
 void AllLight() {
