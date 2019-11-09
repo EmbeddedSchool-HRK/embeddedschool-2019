@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "driver_LEDs.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
