@@ -6,7 +6,7 @@ stm32f4xx_it.c
 syscalls.c
 sysmem.c
 system_stm32f4xx.c
-Startup/
+startup_stm32f407vgtx.s
 Debug/
 Drivers/
 Middlewares/

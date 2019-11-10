@@ -64,7 +64,7 @@ static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN PFP */
-  
+void fm_func(uint32_t period, uint32_t dutycycle);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -112,10 +112,17 @@ int main(void) {
   /* USER CODE BEGIN WHILE */
  while (1) {
     /* USER CODE END WHILE */
-  MX_USB_HOST_Process();
+MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
+ fm_func(5500, 5000);
 }
   /* USER CODE END 3 */
+}
+void fm_func(uint32_t period, uint32_t dutycycle) {
+ HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_SET);
+ HAL_Delay(dutycycle);
+ HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15), GPIO_PIN_RESET);
+ HAL_Delay(period - dutycycle);
 }
 /**
   * @brief System Clock Configuration
