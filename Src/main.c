@@ -28,6 +28,7 @@
 #include "Heartbeat_Red_LED.h"
 #include "Drv_LEDs.h"
 
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -121,6 +122,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   HeartBeat_led_Red(250);
+  HeartBeat_led_Other(1000, 700);
   }
   /* USER CODE END 3 */
 }

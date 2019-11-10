@@ -9,17 +9,13 @@
 #include "Drv_LEDs.h"
 #include "Heartbeat_Red_LED.h"
 
+LED_LIST array_example [LED_COUNT] = {LED_BLUE, LED_ORANGE, LED_GREEN};
+
 void HeartBeat_led_Other(uint16_t period, uint16_t dutycycle) {
-  DrvLEDs_on(LED_GREEN);
+  for (uint16_t ledName = 0; ledName< LED_COUNT -1 ; ledName++){
+  DrvLEDs_on(array_example[ledName]);
   HAL_Delay(dutycycle);
-  DrvLEDs_off(LED_GREEN);
+  DrvLEDs_off(array_example[ledName]);
   HAL_Delay(period - dutycycle);
-  DrvLEDs_on(LED_ORANGE);
-  HAL_Delay(dutycycle);
-  DrvLEDs_off(LED_ORANGE);
-  HAL_Delay(period - dutycycle);
-  DrvLEDs_on(LED_BLUE);
-  HAL_Delay(dutycycle);
-  DrvLEDs_off(LED_BLUE);
-  HAL_Delay(period - dutycycle);
-}
+  }
+ }
