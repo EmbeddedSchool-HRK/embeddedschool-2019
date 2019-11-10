@@ -12,5 +12,6 @@
 #include "main.h"
 
 void HeartBeat_led_Red(uint16_t DELAY);
+void HeartBeat_led_Other(uint16_t period, uint16_t dutycycle);
 
 #endif /* HEARTBEAT_RED_LED_H_ */
