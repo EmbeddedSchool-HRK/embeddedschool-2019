@@ -118,6 +118,8 @@ while (1)
 
     /* USER CODE BEGIN 3 */
   HeartBeat_ORANGELED();
+  HeartBeatRun();
+
   /* USER CODE END 3 */
 }
 
