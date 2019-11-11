@@ -106,18 +106,15 @@ int main(void) {
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-
+ fm_func(5500, 5000);
   /* USER CODE END 2 */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
  while (1) {
     /* USER CODE END WHILE */
 MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
- fm_func(5500, 5000);
- for(;;) {
-  lcb_func(1750, 500);
+ lcb_func(1750, 500);
 }
   /* USER CODE END 3 */
 }
