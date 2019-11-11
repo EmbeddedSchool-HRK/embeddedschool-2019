@@ -116,7 +116,6 @@ int main(void) {
 MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
  fm_func(5500, 5000);
-}
  for(;;) {
   lcb_func(1750, 500);
 }
