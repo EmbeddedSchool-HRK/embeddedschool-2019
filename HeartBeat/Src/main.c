@@ -36,6 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define DELAY 500
 
 /* USER CODE END PD */
 
@@ -117,8 +118,8 @@ while (1)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-  HeartBeat_ORANGELED();
-  HeartBeatRun();
+  HeartBeat_ORANGELED(500);
+  HeartBeatRun(500);
 
   /* USER CODE END 3 */
 }
