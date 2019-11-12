@@ -4,7 +4,6 @@ CodeDB/
 Debug/
 CrossBlink.h
 gpio.h
-HeartBeat.h
 i2c.h
 i2s.h
 main.h
@@ -23,7 +22,6 @@ usbh_pipes.h
 usbh_platform.h
 CrossBlink.c
 gpio.c
-HeartBeat.c
 i2c.c
 i2s.c
 spi.c

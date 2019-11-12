@@ -33,7 +33,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drv_LEDs.h"
-// #include "HeartBeat.h"
+#include "HeartBeat.h"
 // #include "CrossBlink.h"
 /* USER CODE END Includes */
 
@@ -113,7 +113,7 @@ int main(void)
     /* USER CODE END WHILE */
  MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
- // hb_ol(1500, 750);
+ hb_ol(1500, 750);
  // lcb_func(500, 250);
  }
   /* USER CODE END 3 */
