@@ -34,7 +34,7 @@
 /* USER CODE BEGIN Includes */
 #include "drv_LEDs.h"
 #include "HeartBeat.h"
-// #include "CrossBlink.h"
+#include "CrossBlink.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,7 +114,7 @@ int main(void)
  MX_USB_HOST_Process();
     /* USER CODE BEGIN 3 */
  hb_ol(1500, 750);
- // lcb_func(500, 250);
+ lcb_func(500, 250);
  }
   /* USER CODE END 3 */
 }

@@ -2,7 +2,6 @@
 .vs/
 CodeDB/
 Debug/
-CrossBlink.h
 gpio.h
 i2c.h
 i2s.h
@@ -20,7 +19,6 @@ usbh_def.h
 usbh_ioreq.h
 usbh_pipes.h
 usbh_platform.h
-CrossBlink.c
 gpio.c
 i2c.c
 i2s.c
