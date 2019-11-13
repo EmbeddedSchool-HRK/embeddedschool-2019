@@ -37,6 +37,8 @@
 #define HEARTBEAT_PERIOD 1000 //in miliseconds
 #define HEARTBEAT_DUTY_CYCLE 500 //in miliseconds
 
+#define INITGLOW_TIME 5000 //in miliseconds
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,6 +66,7 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
+void InitGlow(uint32_t glow_time);
 void HeartBeat(uint32_t period, uint32_t Duty_Cycle);
 /* USER CODE END PFP */
 
@@ -104,7 +107,7 @@ int main(void) {
     MX_SPI1_Init();
     MX_USB_HOST_Init();
     /* USER CODE BEGIN 2 */
-
+    InitGlow(INITGLOW_TIME);
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -363,6 +366,15 @@ void HeartBeat(uint32_t period, uint32_t Duty_Cycle) {
     HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
     HAL_Delay(period - Duty_Cycle);
 }
+
+void InitGlow(uint32_t glow_time) {
+    HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin,
+            GPIO_PIN_SET);
+    HAL_Delay(glow_time);
+    HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin,
+            GPIO_PIN_RESET);
+}
+
 /* USER CODE END 4 */
 
 /**
