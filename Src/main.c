@@ -21,6 +21,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
+#include "DrvLED.h"
+#include "heartbeat.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -74,14 +76,7 @@ void MX_USB_HOST_Process(void);
   * @brief  The application entry point.
   * @retval int
   */
-void Heartbeat()
-{
-		int n = 300;
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-		HAL_Delay(n);
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-		HAL_Delay(n);
-}
+
 
 
 int main(void)
@@ -126,15 +121,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    for(int i = 0; i<5; i++)
-       	{
-       		Heartbeat();
-       	}
-
-    HAL_GPIO_WritePin(GPIOD, LD4_Pin|GPIO_PIN_13|GPIO_PIN_14|LD6_Pin, GPIO_PIN_SET);
-    HAL_Delay(5000);
-    HAL_GPIO_WritePin(GPIOD, LD4_Pin|GPIO_PIN_13|GPIO_PIN_14|LD6_Pin, GPIO_PIN_RESET);
-    HAL_Delay(50);
+    for(int i = 0; i<7; i++)
+        {
+        	heartbeat(LED_GREEN, 500);
+        }
+        drvLeds_ON(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
+        Delay(5000);
+        drvLeds_OFF(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
+        Delay(150);
     for(;;)
     {
     	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13, GPIO_PIN_SET);
