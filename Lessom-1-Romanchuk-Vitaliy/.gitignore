@@ -1,0 +1,20 @@
+.settings/
+.vs/
+Inc/
+stm32f4xx_hal_msp.c
+stm32f4xx_it.c
+syscalls.c
+sysmem.c
+system_stm32f4xx.c
+startup_stm32f407vgtx.s
+Debug/
+Drivers/
+Middlewares/
+USB_HOST/
+.cproject
+.mxproject
+.project
+Lessom-1-Romanchuk-Vitaliy Debug.launch
+Lessom-1-Romanchuk-Vitaliy.ioc
+STM32F407VGTX_FLASH.ld
+STM32F407VGTX_RAM.ld
