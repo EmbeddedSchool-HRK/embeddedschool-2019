@@ -125,29 +125,25 @@ int main(void)
         {
         	heartbeat(LED_GREEN, 500);
         }
-        drvLeds_ON(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
-        Delay(5000);
-        drvLeds_OFF(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
-        Delay(150);
+    drvLeds_ON(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
+    Delay(5000);
+    drvLeds_OFF(LED_BLUE|LED_GREEN|LED_ORANGE|LED_RED);
+    Delay(150);
     for(;;)
     {
-    	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13, GPIO_PIN_SET);
-    	HAL_Delay(700);
-    	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13, GPIO_PIN_RESET);
-
-    	HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_SET);
-    	HAL_Delay(700);
-    	HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
-
-    	HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
-    	HAL_Delay(700);
-    	HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
-
-    	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
-        HAL_Delay(700);
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+    	drvLeds_ON(LED_RED);
+    	Delay(500);
+    	drvLeds_OFF(LED_RED);
+    	drvLeds_ON(LED_BLUE);
+    	Delay(500);
+    	drvLeds_OFF(LED_BLUE);
+    	drvLeds_ON(LED_GREEN);
+    	Delay(500);
+    	drvLeds_OFF(LED_GREEN);
+    	drvLeds_ON(LED_ORANGE);
+    	Delay(500);
+    	drvLeds_OFF(LED_ORANGE);
     }
-
   }
   /* USER CODE END 3 */
 }
