@@ -2,4 +2,5 @@
 /Debug/**
 # some .ilf.launch file
 *.elf.launch
-# .gitignore himself
+# some file changed during last commit for lesson#2
+.settings/language.settings.xml
