@@ -1,0 +1,6 @@
+#Everything inside /Debug/
+/Debug/**
+# some .ilf.launch file
+*.elf.launch
+# some file changed during last commit for lesson#2
+.settings/language.settings.xml
