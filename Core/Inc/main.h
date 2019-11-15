@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
-#include "hearbeat.h"
+#include <heartbeat.h>
 #include "ledsQueue.h"
 #include "ledsInit.h"
 /* USER CODE END Includes */
