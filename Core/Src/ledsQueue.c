@@ -8,7 +8,7 @@
 
 #include "ledsQueue.h"
 
-void LedsQueue_d(uint32_t time)
+void LedsQueue_default(uint32_t time)
 {
 	drvLed_on(LED_ORANGE);
 	HAL_Delay(time);

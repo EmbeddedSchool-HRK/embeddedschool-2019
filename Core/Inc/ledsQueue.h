@@ -10,7 +10,7 @@
 
 #include "drvLeds.h"
 
-void LedsQueue_d(uint32_t time);
+void LedsQueue_default(uint32_t time);
 
 void LedsQueue(led_color_t* leds_queue, uint32_t count, uint32_t time);
 

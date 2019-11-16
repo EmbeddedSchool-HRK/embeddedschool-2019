@@ -8,6 +8,8 @@
 #ifndef INC_LEDSINIT_H_
 #define INC_LEDSINIT_H_
 
+#include "stdint.h"
+
 void ledsInit(uint32_t time);
 
 #endif /* INC_LEDSINIT_H_ */

@@ -8,8 +8,6 @@
 #ifndef SRC_DRVLEDS_H_
 #define SRC_DRVLEDS_H_
 
-#include "stm32f4xx_hal.h"
-
 typedef enum
 {
 	LED_GREEN = 0,
