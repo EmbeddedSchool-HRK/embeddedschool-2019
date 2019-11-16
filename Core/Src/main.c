@@ -113,8 +113,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Heartbeat(LED_BLUE, 1000, 100);
-	  LedsQueue(leds_queue, n_elements, 100ul);
+	  Heartbeat(LED_BLUE, 100, 1000);
+	//  LedsQueue(leds_queue, n_elements, 100ul);
   }
   /* USER CODE END 3 */
 }
