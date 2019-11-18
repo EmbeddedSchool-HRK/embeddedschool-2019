@@ -90,7 +90,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_Delay(100);
   drvLcd_Init();
-  drvLcd_SendString((uint8_t*)"I Love Embedded School! Also I'm passion at learning. Kiriliza test hasnt passes :(\n");
+  drvLcd_SendString((uint8_t*)"I love Embedded School(c)S1ckret\n");
   ledsInit(2000);
   led_color_t leds_queue[] =
  	  {

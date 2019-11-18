@@ -15,5 +15,6 @@ void drvLcd_Pulse();
 void drvLcd_SendChar(uint8_t byte);
 void drvLcd_SendString(uint8_t* str);
 void drvLcd_SetCursor(uint8_t line, uint8_t column);
+void drvLcd_Clear();
 
 #endif /* INC_DRVLCD_H_ */
