@@ -8,6 +8,9 @@
 #include "drvLcd.h"
 #include "main.h"
 
+#define LINE_COUNT 2
+#define COLUMN_COUNT 16
+
 // Low level function. Reset pin in ODR via BSSR
 // BSSR 32 bit register
 // 0-15 bits: if '1' then write '1' in ODR
@@ -80,10 +83,22 @@ void drvLcd_SendString(uint8_t* str)
 	{
 		drvLcd_SendChar(str[i]);
 		i++;
+		delay_ms(50);
+		if (!(i % COLUMN_COUNT))
+		{
+			drvLcd_SetCursor((i / COLUMN_COUNT) % 2, 0);
+		}
 	}
 }
 
-
+void drvLcd_SetCursor(uint8_t line, uint8_t column)
+{
+	if (line < LINE_COUNT && column < COLUMN_COUNT)
+	{
+		send_command(0b1000 | (line << 2));
+		send_command(0b0000 | column);
+	}
+}
 
 void set_high(uint16_t Pin)
 {
