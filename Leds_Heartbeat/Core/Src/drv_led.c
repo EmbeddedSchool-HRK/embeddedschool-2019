@@ -21,10 +21,10 @@ led_type array[Counter] =
 	{GPIOD, GPIO_PIN_15}
 };
 
-void Led_On(led_colours led_number){
+void Leds_activation(led_colour led_number){
   HAL_GPIO_WritePin(array[led_number].port, array[led_number].pin, GPIO_PIN_SET);
 }
 
-void Led_Off(led_colours led_number){
+void Leds_disable(led_colour led_number){
   HAL_GPIO_WritePin(array[led_number].port, array[led_number].pin, GPIO_PIN_RESET);
 }
