@@ -20,7 +20,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "drv_led.h"
+#define duty_cycle 400
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -61,26 +62,7 @@ void SystemClock_Config(void);
   * @brief  The application entry point.
   * @retval int
   */
-void HeartBeat(){
-	
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-	   HAL_Delay(100);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
-	   HAL_Delay(100);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-	   HAL_Delay(200);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-	   HAL_Delay(200);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
-	   HAL_Delay(300);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
-	   HAL_Delay(300);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
-	   HAL_Delay(400);
-	   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
-	   HAL_Delay(400);	
-	
-	};
+
 
 int main(void)
 {
@@ -115,7 +97,7 @@ int main(void)
   while (1)
   {
 
-	   HeartBeat();
+	  heartbeat_func(duty_cycle);
   }
   /* USER CODE END 3 */
 }

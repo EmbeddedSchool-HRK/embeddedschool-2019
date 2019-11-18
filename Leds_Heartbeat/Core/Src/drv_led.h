@@ -14,9 +14,9 @@ typedef enum {
 	Led_Red,
 	Led_Blue,
 	Counter
-}led_colours;
+}led_colour;
 
-void Leds_activation(led_colours colour);
-void Leds_disable(led_colours colour);
+void Leds_activation(led_colour colour);
+void Leds_disable(led_colour colour);
 
 #endif /* SRC_DRV_LED_H_ */
