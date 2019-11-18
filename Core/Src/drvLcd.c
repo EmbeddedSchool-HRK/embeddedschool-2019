@@ -79,14 +79,24 @@ void drvLcd_SendChar(uint8_t byte)
 void drvLcd_SendString(uint8_t* str)
 {
 	uint8_t i = 0;
+	uint8_t clear_flag = 0;
 	while (str[i] != '\n')
 	{
+		if (clear_flag)
+		{
+			drvLcd_Clear();
+			clear_flag = 0;
+		}
 		drvLcd_SendChar(str[i]);
 		i++;
 		delay_ms(50);
 		if (!(i % COLUMN_COUNT))
 		{
 			drvLcd_SetCursor((i / COLUMN_COUNT) % 2, 0);
+			if (!(i % (2 * COLUMN_COUNT)))
+			{
+				clear_flag = 1;
+			}
 		}
 	}
 }
@@ -99,6 +109,14 @@ void drvLcd_SetCursor(uint8_t line, uint8_t column)
 		send_command(0b0000 | column);
 	}
 }
+
+void drvLcd_Clear()
+{
+	send_command(0b0000);
+	send_command(0b0001);
+}
+
+
 
 void set_high(uint16_t Pin)
 {
