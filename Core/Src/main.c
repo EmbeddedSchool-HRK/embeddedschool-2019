@@ -88,6 +88,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+
   ledsInit(2000);
   led_color_t leds_queue[] =
  	  {
@@ -103,6 +104,7 @@ int main(void)
  			  LED_RED
  	  };
   uint32_t n_elements = sizeof(leds_queue) / sizeof(leds_queue[0]);
+
 
   /* USER CODE END 2 */
 
@@ -167,10 +169,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, DISP_RS_Pin|DISP_RW_Pin|DISP_ENA_Pin|DISP_DB4_Pin 
+                          |DISP_DB5_Pin|DISP_DB6_Pin|DISP_DB7_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, LD4_Pin|LD3_Pin|LD5_Pin|LD6_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : DISP_RS_Pin DISP_RW_Pin DISP_ENA_Pin DISP_DB4_Pin 
+                           DISP_DB5_Pin DISP_DB6_Pin DISP_DB7_Pin */
+  GPIO_InitStruct.Pin = DISP_RS_Pin|DISP_RW_Pin|DISP_ENA_Pin|DISP_DB4_Pin 
+                          |DISP_DB5_Pin|DISP_DB6_Pin|DISP_DB7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD4_Pin LD3_Pin LD5_Pin LD6_Pin */
   GPIO_InitStruct.Pin = LD4_Pin|LD3_Pin|LD5_Pin|LD6_Pin;
