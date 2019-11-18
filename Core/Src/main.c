@@ -88,7 +88,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_Delay(100);
+  drvLcd_Init();
+  drvLcd_SendString((uint8_t*)"I Love Embedded School!\n");
   ledsInit(2000);
   led_color_t leds_queue[] =
  	  {
