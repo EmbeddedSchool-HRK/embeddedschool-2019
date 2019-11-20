@@ -41,6 +41,8 @@
 
 #define HeartBeat_Period 1000
 #define HeartBeat_DutyCycle 100
+#define FourLightRun_Period 1000
+#define FourLightRun_DutyCycle 100
 
 /* USER CODE END PD */
 
@@ -124,7 +126,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
   drvLEDs_HeartBeat(HeartBeat_Period, HeartBeat_DutyCycle);
-  drvLEDs_FourLightRun();
+  drvLEDs_FourLightRun(FourLightRun_Period, FourLightRun_DutyCycle);
 
   }
   /* USER CODE END 3 */
