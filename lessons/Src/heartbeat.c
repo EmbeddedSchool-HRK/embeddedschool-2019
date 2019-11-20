@@ -9,7 +9,7 @@
 #include "heartbeat.h"
 #include "drvLeds.h"
 
-ledsList_t LED_array = {LED_BLUE};
+ledsList_t LED_heartbeat = {LED_BLUE};
 // здесь вводить последовательность светодиодов
 
 typedef enum{
@@ -29,7 +29,7 @@ void Heartbeat_run(uint16_t dutyCycle, uint16_t period)
 
   switch(currentState) {
   case STATE_TURN_LED_ON:
-    drvLeds_on(LED_array);
+    drvLeds_on(LED_heartbeat);
     startTime = ulSysTime_getCurrentTime();
     nextState = STATE_WAIT_DUTYCYCLE;
     break;
@@ -40,7 +40,7 @@ void Heartbeat_run(uint16_t dutyCycle, uint16_t period)
     }
     break;
   case STATE_TURN_LED_OFF:
-    drvLeds_off(LED_array);
+    drvLeds_off(LED_heartbeat);
     startTime = ulSysTime_getCurrentTime();
     nextState = STATE_WAIT_PERIOD;
     break;
