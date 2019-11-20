@@ -8,6 +8,8 @@
 #ifndef INC_DRVLEDS_HEARTBEAT_H_
 #define INC_DRVLEDS_HEARTBEAT_H_
 
-void drvLEDs_HeartBeat();
+#include "stdint.h"
+
+void drvLEDs_HeartBeat(uint16_t PERIOD, uint16_t DUTY_CYCLE);
 
 #endif /* INC_DRVLEDS_HEARTBEAT_H_ */
