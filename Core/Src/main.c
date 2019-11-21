@@ -29,6 +29,7 @@
 #include "heartbeat.h"
 #include "startup.h"
 #include "ulsystime.h"
+#include "ulheartbeat.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
