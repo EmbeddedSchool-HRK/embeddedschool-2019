@@ -23,6 +23,7 @@
 #include "usb_host.h"
 #include "drvLED.h"
 #include "Heartbeat.h"
+#include "RunningLEDs.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -37,6 +38,7 @@
 /* USER CODE BEGIN PD */
 #define DUTYCYCLE 500
 #define PERIOD 1000
+#define RUN_DELAY 200 // delay for runningLEDs function
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -114,6 +116,7 @@ int main(void)
   while (1)
   {
     Heartbeat(DUTYCYCLE, PERIOD);
+    LEDsRun(RUN_DELAY);
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
