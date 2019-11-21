@@ -30,6 +30,7 @@
 #include "startup.h"
 #include "ulsystime.h"
 #include "ulheartbeat.h"
+#include "ulheartbeat_run.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +43,6 @@
 #define COLOR LED_RED
 #define DUTY_CYCLE 500
 #define PERIOD 1000
-#define STARTUP 2000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -112,7 +112,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-  Startup(STARTUP);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,7 +123,8 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    Heartbeat_Run(DUTY_CYCLE);
+	ulHeartbeat(COLOR,PERIOD,DUTY_CYCLE);
+    ulHeartbeat_Run(DUTY_CYCLE);
   }
   /* USER CODE END 3 */
 }
