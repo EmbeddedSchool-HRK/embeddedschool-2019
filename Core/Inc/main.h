@@ -83,6 +83,14 @@ void Error_Handler(void);
 #define LD5_GPIO_Port GPIOD
 #define LD6_Pin GPIO_PIN_15
 #define LD6_GPIO_Port GPIOD
+#define SWT4_Pin GPIO_PIN_6
+#define SWT4_GPIO_Port GPIOC
+#define SWT5_Pin GPIO_PIN_8
+#define SWT5_GPIO_Port GPIOC
+#define SWT3_Pin GPIO_PIN_9
+#define SWT3_GPIO_Port GPIOC
+#define SWT1_Pin GPIO_PIN_11
+#define SWT1_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
