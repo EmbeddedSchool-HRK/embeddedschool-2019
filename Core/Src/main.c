@@ -112,15 +112,30 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t cursorPos = 0;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (drvButton_isPressed(BUTTON_UP))
+	  Heartbeat(LED_BLUE, 100, 1000);
+	  LedsQueue(leds_queue, n_elements, 100ul);
+
+	  if (drvButton_isPressedForTime(BUTTON_LEFT, BUTTON_PRESS_TIME_SHORT))
 	  {
-		  Heartbeat(LED_BLUE, 100, 1000);
-		  LedsQueue(leds_queue, n_elements, 100ul);
+		  if (cursorPos > 0)
+		  {
+			  cursorPos--;
+			  drvLcd_SetCursor(0, cursorPos);
+		  }
+	  }
+	  else if (drvButton_isPressedForTime(BUTTON_RIGHT, BUTTON_PRESS_TIME_SHORT))
+	  {
+		  if (cursorPos < 17)
+		  {
+			  cursorPos++;
+			  drvLcd_SetCursor(0, cursorPos);
+		  }
 	  }
   }
   /* USER CODE END 3 */
