@@ -36,6 +36,8 @@ extern "C" {
 #include <heartbeat.h>
 #include "ledsQueue.h"
 #include "ledsInit.h"
+#include "drvLcd.h"
+#include "drvButtons.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
