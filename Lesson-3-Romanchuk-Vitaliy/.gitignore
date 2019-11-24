@@ -1,0 +1,11 @@
+.settings/
+Core/
+Drivers/
+Middlewares/
+USB_HOST/
+.cproject
+.mxproject
+.project
+Lesson-3-HeartBeat-utility.ioc
+STM32F407VGTX_FLASH.ld
+STM32F407VGTX_RAM.ld
