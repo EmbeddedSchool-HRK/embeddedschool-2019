@@ -13,7 +13,7 @@ typedef struct
 	uint16_t Pin;
 } Led_t;
 
-Led_t leds[LED_COUNT] =
+static Led_t leds[LED_COUNT] =
 {
 	{LD4_GPIO_Port, LD4_Pin},	// Green
 	{LD5_GPIO_Port, LD5_Pin},	// Red

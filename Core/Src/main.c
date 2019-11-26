@@ -89,6 +89,21 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   ledsInit(2000);
+  led_color_t leds_queue[] =
+ 	  {
+ 			  LED_BLUE,
+ 			  LED_RED,
+ 			  LED_RED,
+ 			  LED_GREEN,
+ 			  LED_GREEN,
+ 			  LED_ORANGE,
+ 			  LED_GREEN,
+ 			  LED_GREEN,
+ 			  LED_RED,
+ 			  LED_RED
+ 	  };
+  uint32_t n_elements = sizeof(leds_queue) / sizeof(leds_queue[0]);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,21 +113,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-	  led_color_t leds_queue[] =
-	  {
-			  LED_BLUE,
-			  LED_RED,
-			  LED_RED,
-			  LED_GREEN,
-			  LED_GREEN,
-			  LED_ORANGE,
-			  LED_GREEN,
-			  LED_GREEN,
-			  LED_RED,
-			  LED_RED
-	  };
-	  uint32_t n_elements = sizeof(leds_queue) / sizeof(leds_queue[0]);
+	  Heartbeat(LED_BLUE, 100, 1000);
 	  LedsQueue(leds_queue, n_elements, 100ul);
   }
   /* USER CODE END 3 */
