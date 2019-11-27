@@ -54,7 +54,13 @@ I2S_HandleTypeDef hi2s3;
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
-
+ledlist_t LED_sequence[] = { //define the array of LEDs here
+    LED_Blue,
+    LED_Green,
+    LED_Orange,
+    LED_Red,
+    LED_Blue
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,7 +122,7 @@ int main(void)
   while (1)
   {
     Heartbeat(DUTYCYCLE, PERIOD);
-    LEDsRun(RUN_DELAY);
+    LEDsRun(RUN_DELAY, LED_sequence, 5);
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 

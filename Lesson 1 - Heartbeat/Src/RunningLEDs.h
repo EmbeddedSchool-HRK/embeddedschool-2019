@@ -10,6 +10,6 @@
 
 #include "drvLED.h"
 
-void LEDsRun(uint16_t delay);
+void LEDsRun(uint16_t delay, ledlist_t LED_array[], uint16_t steps);
 
 #endif /* RUNNINGLEDS_H_ */
