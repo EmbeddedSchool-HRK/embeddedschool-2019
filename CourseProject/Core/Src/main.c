@@ -59,7 +59,7 @@ static void MX_I2C1_Init(void);
 static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
-
+void HeartBeat(uint32_t period, uint32_t dutycycle);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -116,6 +116,14 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+void HeartBeat(uint32_t period, uint32_t dutycycle)
+{
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+	HAL_Delay(dutycycle);
+	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
+	HAL_Delay(period - dutycycle);
 }
 
 /**
