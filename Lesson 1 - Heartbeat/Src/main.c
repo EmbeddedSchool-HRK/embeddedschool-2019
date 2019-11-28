@@ -21,7 +21,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
+#include "drvLED.h"
+#include "Heartbeat.h"
+#include "RunningLEDs.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -34,10 +36,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//Change delays in milliseconds to your desire
-#define INIT_DELAY 5000
-#define CYCLE_DELAY 500
-
+#define DUTYCYCLE 500
+#define PERIOD 1000
+#define RUN_DELAY 200 // delay for runningLEDs function
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,7 +54,13 @@ I2S_HandleTypeDef hi2s3;
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
-
+ledlist_t LED_sequence[] = { //define the array of LEDs here
+    LED_Blue,
+    LED_Green,
+    LED_Orange,
+    LED_Red,
+    LED_Blue
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,9 +72,6 @@ static void MX_SPI1_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
-
-void LED_Init(uint32_t delay);
-void LED_Cycle(uint32_t delay);
 
 /* USER CODE END PFP */
 
@@ -110,14 +114,15 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
-	LED_Init(INIT_DELAY); //all LEDs turn on for 'INIT_DELAY' milliseconds and then turn off
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	LED_Cycle(CYCLE_DELAY); //LEDs are turning on and off in the following order : LD3 LD6 LD4 LD5 with a delay of 'CYCLE_DELAY' milliseconds
+    Heartbeat(DUTYCYCLE, PERIOD);
+    LEDsRun(RUN_DELAY, LED_sequence, 5);
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
@@ -376,35 +381,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//User functions
 
-  void LED_Init(uint32_t delay) {
-  	/* USER CODE BEGIN 2 */
-  	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-  	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-  	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-  	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-  	HAL_Delay(delay);
-  	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  }
-
-  void LED_Cycle(uint32_t delay) {
-  	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-  	HAL_Delay(delay);
-  	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-  	HAL_Delay(delay);
-  	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-  	HAL_Delay(delay);
-  	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
-  	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-  	HAL_Delay(delay);
-  	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_RESET);
-  }
 /* USER CODE END 4 */
 
 /**
