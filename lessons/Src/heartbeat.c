@@ -7,18 +7,35 @@
 
 #include "main.h"
 #include "heartbeat.h"
-#include "drvLeds.h"
+// #include "drvLeds.h"
+#include "ulStates.h"
 
-ledsList_t LED_array [LED_AMOUNT] = {LED_ORANGE, LED_BLUE, LED_RED,LED_GREEN};
-// здесь вводить последовательность светодиодов
+static ledsList_t LED_array[] = {LED_BLUE};
 
+static heartbeatStates_t currentState = STATE_TURN_LED_ON;
 
 void Heartbeat_run(uint16_t dutyCycle, uint16_t period)
 {
-  for (uint16_t ledName = 0; ledName < LED_AMOUNT - 1 ; ledName++) {
-  drvLeds_on(LED_array[ledName]);
-  HAL_Delay(dutyCycle);
-  drvLeds_off(LED_array[ledName]);
-  HAL_Delay(period - dutyCycle);
+  heartbeatStates_t nextState = currentState;
+  uint8_t isItTime = 0;
+  static uint32_t startTime = 0;
+
+  switch(currentState) {
+  case STATE_TURN_LED_ON:
+    ulStates_LED_ON( LED_array, startTime, &nextState, 0);
+    break;
+  case STATE_WAIT_DUTYCYCLE:
+    ulStates_WAIT_DUTYCYCLE(isItTime, startTime, dutyCycle, &nextState);
+    break;
+  case STATE_TURN_LED_OFF:
+    ulStates_LED_OFF( LED_array, startTime, &nextState, 0);
+    break;
+  case STATE_WAIT_PERIOD:
+    ulStates_WAIT_PERIOD(isItTime, startTime, dutyCycle, period, &nextState);
+    break;
+  default:
+    nextState = STATE_TURN_LED_ON;
   }
+
+  currentState = nextState;
 }

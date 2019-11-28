@@ -116,6 +116,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     Heartbeat_run(500,1000);
+    ulRunningLeds(1000,2000);
   }
   /* USER CODE END 3 */
 }
