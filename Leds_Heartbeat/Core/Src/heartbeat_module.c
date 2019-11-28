@@ -18,12 +18,13 @@ led_colour mass[Counter] =
 
 void heartbeat_moving(int duty_cycle){
 	for(led_colour colour = 0; colour < Counter; colour++){
-		  Leds_activation(mass[colour]);
-		  HAL_Delay(duty_cycle);
-		  Leds_disable(mass[colour]);
-		  HAL_Delay(duty_cycle);
+		Leds_activation(mass[colour]);
+		HAL_Delay(duty_cycle);
+		Leds_disable(mass[colour]);
+		HAL_Delay(duty_cycle);
+		}
 }
-}
+
 void all_leds_blinking(int dual_duty_cycle){
 	for(led_colour colour = 0; colour < Counter; colour++){
 	Leds_activation(colour);
