@@ -26,8 +26,8 @@
 /* USER CODE BEGIN Includes */
 
 #include "drvLEDs.h"
+#include "drvLEDs_FourLightRun.h"
 #include "drvLEDs_HeartBeat.h"
-#include "drvLEDs_FourLigtRun.h"
 
 /* USER CODE END Includes */
 
@@ -38,6 +38,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define HeartBeat_Period 1000
+#define HeartBeat_DutyCycle 100
+#define FourLightRun_Period 1000
+#define FourLightRun_DutyCycle 100
 
 /* USER CODE END PD */
 
@@ -120,8 +125,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-  drvLEDs_HeartBeat();
-  drvLEDs_FourLightRun();
+  drvLEDs_HeartBeat(HeartBeat_Period, HeartBeat_DutyCycle);
+  drvLEDs_FourLightRun(FourLightRun_Period, FourLightRun_DutyCycle);
 
   }
   /* USER CODE END 3 */
