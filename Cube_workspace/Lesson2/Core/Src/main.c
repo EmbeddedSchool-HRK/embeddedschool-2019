@@ -24,6 +24,7 @@
 #include "heartbeat_module.h"
 #define duty_cycle 500
 #define dual_duty_cycle 1000
+#define period 200
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -100,7 +101,7 @@ int main(void)
   while (1)
   {
 
-	  heartbeat_moving(duty_cycle);
+	  heartbeat_moving(duty_cycle,period);
 	  all_leds_blinking(dual_duty_cycle);
 
   }
