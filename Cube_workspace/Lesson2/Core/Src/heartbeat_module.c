@@ -14,15 +14,17 @@ led_colour mass[Counter] =
 		Led_Orange,
 		Led_Red,
 		Led_Blue,
+
 };
 
-//const led_colour led_heartbeat = LED_BLUE;
+const led_colour diode = Led_Green;
 
 typedef enum{
 	STATE_TURN_LED_ON,
 	STATE_WAIT_DUTYCYCLE,
 	STATE_TURN_LED_OFF,
-	STATE_WAIT_PERIOD
+	STATE_WAIT_PERIOD,
+	STATE_SWITCH_STEP
 }heartbeatStates_t;
 
 static heartbeatStates_t currentState = STATE_TURN_LED_ON;
@@ -35,7 +37,7 @@ void heartbeat_moving(int duty_cycle,int period){
 
 	switch(currentState){
 	case STATE_TURN_LED_ON :
-		Leds_activation(mass[Counter]);
+		Leds_activation(diode);
 		startTime = ulSysTime_getCurrentTime();
 		nextState = STATE_WAIT_DUTYCYCLE;
 		break;
@@ -46,7 +48,7 @@ void heartbeat_moving(int duty_cycle,int period){
 		}
 		break;
 	case STATE_TURN_LED_OFF :
-		Leds_disable(mass[Counter]);
+		Leds_disable(diode);
 		startTime = ulSysTime_getCurrentTime();
 		nextState = STATE_WAIT_PERIOD;
 		break;
@@ -62,27 +64,47 @@ void heartbeat_moving(int duty_cycle,int period){
 	currentState = nextState;
 }
 
+void all_leds_blinking(int dual_duty_cycle,int period){
 
-/*void heartbeat_moving(int duty_cycle){
-	for(led_colour colour = 0; colour < Counter; colour++){
-		Leds_activation(mass[colour]);
-		HAL_Delay(duty_cycle);
-		Leds_disable(mass[colour]);
-		HAL_Delay(duty_cycle);
+	heartbeatStates_t nextState = currentState;
+	uint8_t isItTime = 0;
+	static uint32_t startTime = 0;
+	static uint32_t step = 0;
+	switch(currentState){
+	case STATE_TURN_LED_ON :
+		Leds_activation(diode);
+		startTime = ulSysTime_getCurrentTime();
+		nextState = STATE_WAIT_DUTYCYCLE;
+		break;
+	case STATE_WAIT_DUTYCYCLE :
+		isItTime = ulSysTime_isItTime(startTime, dual_duty_cycle);
+		if (isItTime) {
+			nextState = STATE_TURN_LED_OFF;
 		}
-}*/
-
-
-
-void all_leds_blinking(int dual_duty_cycle){
-	for(led_colour colour = 0; colour < Counter; colour++){
-	Leds_activation(colour);
+		break;
+	case STATE_TURN_LED_OFF :
+		Leds_disable(diode);
+		startTime = ulSysTime_getCurrentTime();
+		nextState = STATE_WAIT_PERIOD;
+		break;
+	case STATE_WAIT_PERIOD:
+		isItTime = ulSysTime_isItTime(startTime, period - dual_duty_cycle);
+		if (isItTime) {
+			nextState = STATE_TURN_LED_ON;
+		}
+		break;
+	case STATE_SWITCH_STEP:
+		if(step < Counter){
+			step++;
+		}
+		else{
+			step = 0;
 		}
 
-	HAL_Delay(dual_duty_cycle);
-	for(led_colour colour = 0; colour < Counter; colour++){
-	Leds_disable(colour);
-		}
+	default:
+		nextState = STATE_TURN_LED_ON;
+	}
+	currentState = nextState;
 }
 
 

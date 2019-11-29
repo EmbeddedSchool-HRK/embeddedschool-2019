@@ -10,6 +10,6 @@
 #include "drv_led.h"
 
 void heartbeat_moving(int duty_cycle, int period);
-void all_leds_blinking(int dual_duty_cycle);
+void all_leds_blinking(int dual_duty_cycle, int period);
 
 #endif /* SRC_HEARTBEAT_MODULE_H_ */

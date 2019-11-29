@@ -102,7 +102,7 @@ int main(void)
   {
 
 	  heartbeat_moving(duty_cycle,period);
-	  all_leds_blinking(dual_duty_cycle);
+	  all_leds_blinking(dual_duty_cycle,period);
 
   }
   /* USER CODE END 3 */
