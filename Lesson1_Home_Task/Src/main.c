@@ -39,6 +39,7 @@
 #define PULSE_DELAY 500
 #define DUTY_CYCLE  500
 #define PERIOD  1000
+#define LEDS_NUMBER 3
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -80,7 +81,12 @@ void MX_USB_HOST_Process(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+list_t LEDS_sequence[LEDS_NUMBER] =
+{
+	LED_BLUE,
+	LED_GREEN,
+	LED_ORANGE
+};
   /* USER CODE END 1 */
   
 
@@ -115,7 +121,7 @@ int main(void)
   while (1)
   {
 		heartbeat(DUTY_CYCLE, PERIOD);
-		rainbow(PULSE_DELAY);
+		rainbow(PULSE_DELAY,LEDS_sequence, LEDS_NUMBER);
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
