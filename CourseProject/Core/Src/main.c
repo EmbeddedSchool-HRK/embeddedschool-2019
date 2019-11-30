@@ -21,7 +21,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
+#include "drvRunningLeds.h"
+#include "heartbeat.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -109,6 +110,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  drv_ActivateAllLeds(5500, 5000);
 
   while (1)
   {
@@ -116,7 +118,8 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    HeartBeat_run(1500, 1000);
+    HeartBeat_run(1500, 1500);
+    drv_RunningLeds(500, 250);
   }
 
 }
