@@ -9,6 +9,7 @@
 /CourseProject/*.launch
 /CourseProject/*.settings
 /CourseProject/Core/Inc/stm32f4xx_it.h
+/CourseProject/Core/Inc/main.h
 /CourseProject/Core/Inc/stm32f4xx_hal_conf.h
 /CourseProject/Debug/
 /CourseProject/Drivers/
