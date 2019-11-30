@@ -66,8 +66,8 @@ void MX_USB_HOST_Process(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HeartBeat(uint32_t period, uint32_t dutycycle);
-void TurnOn4Leds(uint32_t delay, uint16_t FirstLed, uint16_t LastLed, GPIO_PinState flag);
+
+
 /* USER CODE END 0 */
 
 /**
@@ -109,45 +109,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint16_t currentLed = LD4_Pin;
-  uint8_t flag = 1;
+
   while (1)
   {
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    if(flag == 1)
-       {
-       	TurnOn4Leds(5000, LD4_Pin, LD6_Pin, GPIO_PIN_SET);
-       	TurnOn4Leds(5000,  LD4_Pin, LD6_Pin, GPIO_PIN_RESET);
-       	flag = 0;
-       }
-    TurnOn4Leds(1000, currentLed, currentLed, GPIO_PIN_SET);
-    TurnOn4Leds(1000, currentLed, currentLed, GPIO_PIN_RESET);
-    currentLed = (currentLed << 1) > LD6_Pin ? LD4_Pin: currentLed << 1;
+    HeartBeat_run(1500, 1000);
   }
 
 }
 
-void TurnOn4Leds(uint32_t delay, uint16_t FirstLed, uint16_t LastLed, GPIO_PinState flag)
-{
-	uint16_t currentLed = FirstLed;
-	while(currentLed <= LastLed)
-	{
-		HAL_GPIO_WritePin(GPIOD, currentLed, flag);
-		currentLed <<= 1;
-	}
-	HAL_Delay(delay);
-}
-
-void HeartBeat(uint32_t period, uint32_t dutycycle)
-{
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-	HAL_Delay(dutycycle);
-	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-	HAL_Delay(period - dutycycle);
-}
 
   /* USER CODE END 3 */
 
