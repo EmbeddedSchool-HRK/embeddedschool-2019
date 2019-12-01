@@ -7,14 +7,11 @@
  
 #include "rainbow.h"
 
-void rainbow(time_t pulse_delay){
-drvLeds_ON(LED_BLUE);
+void rainbow(time_t pulse_delay, list_t led[], int leds_number){
+for( int i=0; i<=leds_number; i++)
+{	
+drvLeds_ON(led[i]);
 HAL_Delay(pulse_delay);
-drvLeds_OFF(LED_BLUE);
-drvLeds_ON(LED_GREEN);
-HAL_Delay(pulse_delay);
-drvLeds_OFF(LED_GREEN);	
-drvLeds_ON(LED_ORANGE);
-HAL_Delay(pulse_delay);
-drvLeds_OFF(LED_ORANGE);
+drvLeds_OFF(led[i]);
+}
 }

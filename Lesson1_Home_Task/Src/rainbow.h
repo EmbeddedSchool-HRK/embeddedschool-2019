@@ -14,6 +14,6 @@
 #define SRC_RAINBOW_H_
 
 
-void rainbow(time_t pulse_delay);
+void rainbow(time_t pulse_delay, list_t led[], int leds_number);
 
 #endif /* SRC_RAINBOW_H_ */
