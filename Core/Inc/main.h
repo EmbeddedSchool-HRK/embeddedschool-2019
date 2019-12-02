@@ -94,8 +94,14 @@ void Error_Handler(void);
 #define LD5_GPIO_Port GPIOD
 #define LD6_Pin GPIO_PIN_15
 #define LD6_GPIO_Port GPIOD
+#define KEY_UP_Pin GPIO_PIN_6
+#define KEY_UP_GPIO_Port GPIOC
 #define I2S3_MCK_Pin GPIO_PIN_7
 #define I2S3_MCK_GPIO_Port GPIOC
+#define KEY_DOWN_Pin GPIO_PIN_8
+#define KEY_DOWN_GPIO_Port GPIOC
+#define KEY_LEFT_Pin GPIO_PIN_9
+#define KEY_LEFT_GPIO_Port GPIOC
 #define VBUS_FS_Pin GPIO_PIN_9
 #define VBUS_FS_GPIO_Port GPIOA
 #define OTG_FS_ID_Pin GPIO_PIN_10
@@ -108,8 +114,12 @@ void Error_Handler(void);
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
+#define KEY_CENTER_Pin GPIO_PIN_15
+#define KEY_CENTER_GPIO_Port GPIOA
 #define I2S3_SCK_Pin GPIO_PIN_10
 #define I2S3_SCK_GPIO_Port GPIOC
+#define KEY_RIGHT_Pin GPIO_PIN_11
+#define KEY_RIGHT_GPIO_Port GPIOC
 #define I2S3_SD_Pin GPIO_PIN_12
 #define I2S3_SD_GPIO_Port GPIOC
 #define Audio_RST_Pin GPIO_PIN_4
