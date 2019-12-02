@@ -28,6 +28,8 @@
 #include "drvLEDs.h"
 #include "drvLEDs_FourLightRun.h"
 #include "drvLEDs_HeartBeat.h"
+#include "drvKeyboard.h"
+#include "ulKeyboard.h"
 
 /* USER CODE END Includes */
 
@@ -114,6 +116,8 @@ int main(void)
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
 
+  ulKeyboard_init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,8 +129,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-  drvLEDs_HeartBeat(HeartBeat_Period, HeartBeat_DutyCycle);
-  drvLEDs_FourLightRun(FourLightRun_Period, FourLightRun_DutyCycle);
+  drvKeyboard_run();
 
   }
   /* USER CODE END 3 */
