@@ -41,7 +41,7 @@
 
 #define HeartBeat_Period 1000
 #define HeartBeat_DutyCycle 100
-#define FourLightRun_Period 1000
+#define FourLightRun_Period 500
 #define FourLightRun_DutyCycle 100
 
 /* USER CODE END PD */
