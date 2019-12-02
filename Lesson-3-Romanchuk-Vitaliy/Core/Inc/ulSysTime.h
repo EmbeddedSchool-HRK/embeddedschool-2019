@@ -5,6 +5,8 @@
  *      Author: Romanchuk.Vitaliy
  */
 
+#include "stdint.h"
+
 #ifndef INC_ULSYSTIME_H_
 #define INC_ULSYSTIME_H_
 

@@ -27,6 +27,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "drv_LEDs.h"
+#include "ulSysTime.h"
+#include "HeartBeat.h"
+//#include "CrossBlink.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,12 +72,10 @@ void MX_USB_HOST_Process(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void) {
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
   
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -103,6 +105,8 @@ int main(void)
   /* USER CODE END WHILE */
  MX_USB_HOST_Process();
   /* USER CODE BEGIN 3 */
+ hb_ol(750, 375);
+ lcb_func(1500, 750);
  }
   /* USER CODE END 3 */
 }

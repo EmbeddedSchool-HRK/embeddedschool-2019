@@ -2,12 +2,16 @@
 main.h
 stm32f4xx_hal_conf.h
 stm32f4xx_it.h
+CrossBlink.h
+CrossBlink.c
 stm32f4xx_hal_msp.c
 stm32f4xx_it.c
 syscalls.c
 sysmem.c
 system_stm32f4xx.c
 Startup/
+Debug/
+Lesson-3-HeartBeat-utility Debug.launch
 Drivers/
 Middlewares/
 USB_HOST/
