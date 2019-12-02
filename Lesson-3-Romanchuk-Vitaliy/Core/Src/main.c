@@ -30,7 +30,7 @@
 #include "drv_LEDs.h"
 #include "ulSysTime.h"
 #include "HeartBeat.h"
-//#include "CrossBlink.h"
+#include "CrossBlink.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
