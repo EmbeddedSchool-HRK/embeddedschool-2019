@@ -7,18 +7,13 @@
 #include "runningleds.h"
 #include  "drvLeds.h"
 
-void RunningLeds(uint16_t dutyCycle, uint16_t period)
+void RunningLeds(uint16_t dutyCycle, uint16_t period, uint8_t ledqueue[3])
 {
-	drvLeds_on(LED_GREEN);
+	for(uint8_t i=0;i<3;i++)
+	{
+	drvLeds_on(ledqueue[i]);
 	HAL_Delay(dutyCycle);
-	drveds_off(LED_GREEN);
+	drveds_off(ledqueue[i]);
 	HAL_Delay(period - dutyCycle);
-	drvLeds_on(LED_BLUE);
-	HAL_Delay(dutyCycle);
-	drveds_off(LED_BLUE);
-	HAL_Delay(period - dutyCycle);
-	drvLeds_on(LED_ORANGE);
-	HAL_Delay(dutyCycle);
-	drveds_off(LED_ORANGE);
-	HAL_Delay(period - dutyCycle);
+	}
 }

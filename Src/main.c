@@ -54,6 +54,7 @@ I2S_HandleTypeDef hi2s3;
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
+uint8_t ledqueue[3] ={LED_BLUE,LED_ORANGE,LED_GREEN};
 
 /* USER CODE END PV */
 
@@ -119,7 +120,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-
+    RunningLeds(dutyCycle, period, ledqueue);
   
   }
   /* USER CODE END 3 */

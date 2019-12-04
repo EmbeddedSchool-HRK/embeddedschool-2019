@@ -9,7 +9,8 @@
 #define RUNNINGLEDS_H_
 
 #include "main.h"
+#include "drvLeds.h"
 
-void RunningLeds(uint16_t dutyCycle, uint16_t period);
+void RunningLeds(uint16_t dutyCycle, uint16_t period, uint8_t ledqueue[3]);
 
 #endif /* RUNNINGLEDS_H_ */
