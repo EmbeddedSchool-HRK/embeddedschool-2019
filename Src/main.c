@@ -120,7 +120,8 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    RunningLeds(dutyCycle, period, ledqueue);
+    Heartbeat_Run(dutyCycle, period);		//run heartbeat function
+    RunningLeds(dutyCycle, period, ledqueue); // run runningleds function
   
   }
   /* USER CODE END 3 */
