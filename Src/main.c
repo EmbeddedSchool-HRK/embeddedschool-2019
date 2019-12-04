@@ -25,6 +25,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
+#include "heartbeat.h"
+#include "runningleds.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,7 +37,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define dutyCycle 100
+#define period 500
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
