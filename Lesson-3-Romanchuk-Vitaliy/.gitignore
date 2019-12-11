@@ -1,0 +1,21 @@
+.settings/
+main.h
+stm32f4xx_hal_conf.h
+stm32f4xx_it.h
+stm32f4xx_hal_msp.c
+stm32f4xx_it.c
+syscalls.c
+sysmem.c
+system_stm32f4xx.c
+Startup/
+Debug/
+Lesson-3-HeartBeat-utility Debug.launch
+Drivers/
+Middlewares/
+USB_HOST/
+.cproject
+.mxproject
+.project
+Lesson-3-HeartBeat-utility.ioc
+STM32F407VGTX_FLASH.ld
+STM32F407VGTX_RAM.ld
