@@ -15,7 +15,7 @@ uint32_t ulSysTime_getCurrentTime(){
 uint8_t ulSysTime_isItTime(uint32_t startTime, uint32_t delay){
   uint32_t currentTime = ulSysTime_getCurrentTime();
   uint8_t returnValue = 0;
-  if ((startTime < currentTime && currentTime - startTime >= delay) || (startTime > currentTime && currentTime + startTime >= delay)){
+  if ((startTime > currentTime && 0xFFFFFFFF - startTime + currentTime >= delay) || (startTime < currentTime && currentTime - startTime >= delay)){
 	returnValue = 1;
   }
 	return returnValue;

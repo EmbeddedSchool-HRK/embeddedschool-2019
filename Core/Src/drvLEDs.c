@@ -5,7 +5,6 @@
  *      Author: AllSE
  */
 
-#include "main.h"
 #include "drvLEDs.h"
 
 Led_t LEDs[LED_AMOUNT] = {

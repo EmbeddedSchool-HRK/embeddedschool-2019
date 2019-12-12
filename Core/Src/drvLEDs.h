@@ -5,6 +5,8 @@
  *      Author: AllSE
  */
 
+#include "stm32f4xx_hal.h"
+
 #ifndef SRC_DRVLEDS_H_
 #define SRC_DRVLEDS_H_
 

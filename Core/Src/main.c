@@ -28,6 +28,8 @@
 #include "drvLEDs.h"
 #include "drvLEDs_FourLightRun.h"
 #include "drvLEDs_HeartBeat.h"
+#include "drvKeyboard.h"
+#include "ulKeyboard.h"
 
 /* USER CODE END Includes */
 
@@ -41,7 +43,7 @@
 
 #define HeartBeat_Period 1000
 #define HeartBeat_DutyCycle 100
-#define FourLightRun_Period 1000
+#define FourLightRun_Period 500
 #define FourLightRun_DutyCycle 100
 
 /* USER CODE END PD */
@@ -114,6 +116,8 @@ int main(void)
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
 
+  ulKeyboard_init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,8 +129,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-  drvLEDs_HeartBeat(HeartBeat_Period, HeartBeat_DutyCycle);
-  drvLEDs_FourLightRun(FourLightRun_Period, FourLightRun_DutyCycle);
+  drvKeyboard_run();
 
   }
   /* USER CODE END 3 */
@@ -365,6 +368,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : KEY_UP_Pin KEY_DOWN_Pin KEY_LEFT_Pin KEY_RIGHT_Pin */
+  GPIO_InitStruct.Pin = KEY_UP_Pin|KEY_DOWN_Pin|KEY_LEFT_Pin|KEY_RIGHT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : KEY_CENTER_Pin */
+  GPIO_InitStruct.Pin = KEY_CENTER_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(KEY_CENTER_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : OTG_FS_OverCurrent_Pin */
   GPIO_InitStruct.Pin = OTG_FS_OverCurrent_Pin;

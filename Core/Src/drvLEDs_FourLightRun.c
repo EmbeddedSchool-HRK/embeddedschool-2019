@@ -71,7 +71,7 @@ void drvLEDs_FourLightRun(uint16_t PERIOD, uint16_t DUTY_CYCLE) {
     }
   break;
   case STATE_NEXT_STEP:
-    if (Step < LEDPatternRunSize){
+    if (Step < LEDPatternRunSize - 1){
       Step++;
     }else{
     Step = 0;
