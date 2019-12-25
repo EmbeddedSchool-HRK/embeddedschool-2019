@@ -69,6 +69,16 @@ void Error_Handler(void);
 #define LD5_GPIO_Port GPIOD
 #define LD6_Pin GPIO_PIN_15
 #define LD6_GPIO_Port GPIOD
+#define SW4_Pin GPIO_PIN_6
+#define SW4_GPIO_Port GPIOC
+#define SW5_Pin GPIO_PIN_8
+#define SW5_GPIO_Port GPIOC
+#define SW3_Pin GPIO_PIN_9
+#define SW3_GPIO_Port GPIOC
+#define SW2_Pin GPIO_PIN_15
+#define SW2_GPIO_Port GPIOA
+#define SW1_Pin GPIO_PIN_11
+#define SW1_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
