@@ -88,22 +88,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  ledsInit(2000);
-  led_color_t leds_queue[] =
- 	  {
- 			  LED_BLUE,
- 			  LED_RED,
- 			  LED_RED,
- 			  LED_GREEN,
- 			  LED_GREEN,
- 			  LED_ORANGE,
- 			  LED_GREEN,
- 			  LED_GREEN,
- 			  LED_RED,
- 			  LED_RED
- 	  };
-  uint32_t n_elements = sizeof(leds_queue) / sizeof(leds_queue[0]);
-
+  ulKeyboard_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,8 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Heartbeat(LED_BLUE, 100, 1000);
-	  LedsQueue(leds_queue, n_elements, 100ul);
+	  drvKeyboard_update();
   }
   /* USER CODE END 3 */
 }
@@ -168,6 +152,8 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, LD4_Pin|LD3_Pin|LD5_Pin|LD6_Pin, GPIO_PIN_RESET);
@@ -178,6 +164,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SW4_Pin SW5_Pin SW3_Pin SW1_Pin */
+  GPIO_InitStruct.Pin = SWT4_Pin|SWT5_Pin|SWT3_Pin|SWT1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SW2_Pin */
+  GPIO_InitStruct.Pin = SWT2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SWT2_GPIO_Port, &GPIO_InitStruct);
 
 }
 
