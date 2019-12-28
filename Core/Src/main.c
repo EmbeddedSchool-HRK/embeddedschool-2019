@@ -98,15 +98,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  drvKeyboard_update();
-
-	  if (drvKeyboard_getKeyState(KEY_LEFT) == KEY_PRESSED)
-	  {
-		  drvLed_on(LED_ORANGE);
-	  }
-	  else
-	  {
-		  drvLed_off(LED_ORANGE);
-	  }
+	  ulKeyboard_update();
   }
   /* USER CODE END 3 */
 }
