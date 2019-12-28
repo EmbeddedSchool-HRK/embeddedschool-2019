@@ -8,6 +8,6 @@
 #ifndef INC_ULKEYBOARD_H_
 #define INC_ULKEYBOARD_H_
 
-void ulKeyboard_update();
+void ulKeyboard_init();
 
 #endif /* INC_ULKEYBOARD_H_ */

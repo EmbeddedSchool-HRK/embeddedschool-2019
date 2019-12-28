@@ -24,8 +24,12 @@ typedef enum
 	KEY_COUNT
 } drvKeyboard_key_t;
 
+typedef void (*drvKeyboard_callback_t)(drvKeyboard_key_t);
+
 drvKeyboard_state_t drvKeyboard_getKeyState(drvKeyboard_key_t key);
 
 void drvKeyboard_update();
+
+void drvKeyboard_registerCallback(drvKeyboard_callback_t ptr_callback);
 
 #endif /* INC_DRVKEYBOARD_H_ */

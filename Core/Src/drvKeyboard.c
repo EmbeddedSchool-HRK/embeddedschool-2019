@@ -15,7 +15,6 @@
 #define COUNTER_PRESSED_VALUE 180
 #define COUNTER_RELEASED_VALUE 25
 
-
 typedef struct
 {
 	uint8_t Counter;
@@ -33,6 +32,9 @@ static key_t keyboard[KEY_COUNT] =
 	{COUNTER_MIN_VALUE, KEY_RELEASED, SW5_GPIO_Port, SW5_Pin}
 };
 
+static drvKeyboard_callback_t ptrCallback = NULL;
+
+static void notify(drvKeyboard_key_t key);
 
 drvKeyboard_state_t drvKeyboard_getKeyState(drvKeyboard_key_t key)
 {
@@ -67,11 +69,23 @@ void drvKeyboard_update()
 				&& (keyboard[i].Counter == COUNTER_PRESSED_VALUE))
 		{
 			keyboard[i].State = KEY_PRESSED;
+			notify(i);
 		}
 		else if ((keyboard[i].State == KEY_PRESSED)
 				&& (keyboard[i].Counter == COUNTER_RELEASED_VALUE))
 		{
 			keyboard[i].State = KEY_RELEASED;
+			notify(i);
 		}
 	}
+}
+
+void drvKeyboard_registerCallback(drvKeyboard_callback_t ptr_callback)
+{
+	ptrCallback = ptr_callback;
+}
+
+static void notify(drvKeyboard_key_t key)
+{
+	ptrCallback(key);
 }

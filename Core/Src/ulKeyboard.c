@@ -5,11 +5,9 @@
  *      Author: S1ckret
  */
 
-#include "drvKeyboard.h"
 #include "ulKeyboard.h"
+#include "drvKeyboard.h"
 #include "drvLeds.h"
-
-#include <stdint.h>
 
 static led_color_t getLedName(drvKeyboard_key_t key)
 {
@@ -30,35 +28,33 @@ static led_color_t getLedName(drvKeyboard_key_t key)
 	return returnValue;
 }
 
-void ulKeyboard_update()
+static void handler(drvKeyboard_key_t key)
 {
-	uint8_t isAnyKeyPressed = 0;
-	for (drvKeyboard_key_t key = 0; key < KEY_COUNT; ++key)
-	{
-		drvKeyboard_state_t keyState = drvKeyboard_getKeyState(key);
-		led_color_t led = getLedName(key);
+	drvKeyboard_state_t keyState = drvKeyboard_getKeyState(key);
+	led_color_t led = getLedName(key);
 
-		if (key != KEY_MIDDLE)
+	if (key != KEY_MIDDLE)
+	{
+		if (keyState == KEY_PRESSED)
 		{
-			if (keyState == KEY_PRESSED)
-			{
-				drvLed_on(led);
-				isAnyKeyPressed = 1;
-			}
-			else
-			{
-				drvLed_off(led);
-			}
+			drvLed_on(led);
+		}
+		else
+		{
+			drvLed_off(led);
 		}
 	}
-
-	if (drvKeyboard_getKeyState(KEY_MIDDLE) == KEY_PRESSED)
+	else if (drvKeyboard_getKeyState(KEY_MIDDLE) == KEY_PRESSED)
 	{
 		drvLed_onAll();
 	}
-	else if (!isAnyKeyPressed)
+	else
 	{
 		drvLed_offAll();
 	}
+}
 
+void ulKeyboard_init()
+{
+	drvKeyboard_registerCallback(handler);
 }
