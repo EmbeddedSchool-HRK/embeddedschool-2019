@@ -32,6 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "PrivateDefines.h"
 #include "drvKeyboard.h"
 #include "ulKeyboard.h"
 /* USER CODE END Includes */
@@ -59,24 +60,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LD4_Pin GPIO_PIN_12
-#define LD4_GPIO_Port GPIOD
-#define LD3_Pin GPIO_PIN_13
-#define LD3_GPIO_Port GPIOD
-#define LD5_Pin GPIO_PIN_14
-#define LD5_GPIO_Port GPIOD
-#define LD6_Pin GPIO_PIN_15
-#define LD6_GPIO_Port GPIOD
-#define SW4_Pin GPIO_PIN_6
-#define SW4_GPIO_Port GPIOC
-#define SW5_Pin GPIO_PIN_8
-#define SW5_GPIO_Port GPIOC
-#define SW3_Pin GPIO_PIN_9
-#define SW3_GPIO_Port GPIOC
-#define SW2_Pin GPIO_PIN_15
-#define SW2_GPIO_Port GPIOA
-#define SW1_Pin GPIO_PIN_11
-#define SW1_GPIO_Port GPIOC
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

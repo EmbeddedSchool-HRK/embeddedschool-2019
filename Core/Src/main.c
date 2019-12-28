@@ -166,16 +166,16 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SW4_Pin SW5_Pin SW3_Pin SW1_Pin */
-  GPIO_InitStruct.Pin = SW4_Pin|SW5_Pin|SW3_Pin|SW1_Pin;
+  GPIO_InitStruct.Pin = SWT4_Pin|SWT5_Pin|SWT3_Pin|SWT1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : SW2_Pin */
-  GPIO_InitStruct.Pin = SW2_Pin;
+  GPIO_InitStruct.Pin = SWT2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(SW2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(SWT2_GPIO_Port, &GPIO_InitStruct);
 
 }
 

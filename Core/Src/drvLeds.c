@@ -5,7 +5,7 @@
  *      Author: S1ckret
  */
 #include "drvLeds.h"
-#include "main.h"
+#include "PrivateDefines.h"
 
 typedef struct
 {
