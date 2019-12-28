@@ -33,9 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "drvLeds.h"
-#include <heartbeat.h>
-#include "ledsQueue.h"
-#include "ledsInit.h"
+#include "drvKeyboard.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
