@@ -7,8 +7,7 @@
 
 
 #include "drvKeyboard.h"
-
-#include "main.h"
+#include "PrivateDefines.h"
 
 #define COUNTER_MIN_VALUE 5
 #define COUNTER_MAX_VALUE 200
@@ -25,11 +24,11 @@ typedef struct
 
 static key_t keyboard[KEY_COUNT] =
 {
-	{COUNTER_MIN_VALUE, KEY_RELEASED, SW1_GPIO_Port, SW1_Pin},
-	{COUNTER_MIN_VALUE, KEY_RELEASED, SW2_GPIO_Port, SW2_Pin},
-	{COUNTER_MIN_VALUE, KEY_RELEASED, SW3_GPIO_Port, SW3_Pin},
-	{COUNTER_MIN_VALUE, KEY_RELEASED, SW4_GPIO_Port, SW4_Pin},
-	{COUNTER_MIN_VALUE, KEY_RELEASED, SW5_GPIO_Port, SW5_Pin}
+	{COUNTER_MIN_VALUE, KEY_RELEASED, SWT1_GPIO_Port, SWT1_Pin},
+	{COUNTER_MIN_VALUE, KEY_RELEASED, SWT2_GPIO_Port, SWT2_Pin},
+	{COUNTER_MIN_VALUE, KEY_RELEASED, SWT3_GPIO_Port, SWT3_Pin},
+	{COUNTER_MIN_VALUE, KEY_RELEASED, SWT4_GPIO_Port, SWT4_Pin},
+	{COUNTER_MIN_VALUE, KEY_RELEASED, SWT5_GPIO_Port, SWT5_Pin}
 };
 
 static drvKeyboard_callback_t ptrCallback = NULL;
