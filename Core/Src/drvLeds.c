@@ -30,3 +30,20 @@ void drvLed_off(led_color_t led_color)
 {
 	HAL_GPIO_WritePin(leds[led_color].Port, leds[led_color].Pin, GPIO_PIN_RESET);
 }
+
+
+void drvLed_onAll()
+{
+	for(led_color_t led = 0; led < LED_COUNT; led++)
+	{
+		drvLed_on(led);
+	}
+}
+
+void drvLed_offAll()
+{
+	for(led_color_t led = 0; led < LED_COUNT; led++)
+	{
+		drvLed_off(led);
+	}
+}

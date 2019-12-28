@@ -21,4 +21,9 @@ void drvLed_on(led_color_t led_color);
 
 void drvLed_off(led_color_t led_color);
 
+void drvLed_onAll();
+
+void drvLed_offAll();
+
+
 #endif /* SRC_DRVLEDS_H_ */
