@@ -1,6 +1,4 @@
-Lesson #2. Introduction to C language
 
-TODO:
 Commit 1: cherry-pick Homework commit из mater ветки
 Commit 2: Реализовать драйвер светодиодов
 Commit 3: Реализовать модуль heardbeat для одного светодиода, используя драйвер 
