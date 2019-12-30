@@ -42,112 +42,42 @@ static key_t keyboard[KEY_COUNT] =
 	{STATE_START, KEY_STATE_RELEASED, NULL, 0, 0, SWT5_GPIO_Port, SWT5_Pin},	/* DOWN	  */
 };
 
+static void notify(drvKeyboard_P_keyName_t key, drvKeyboard_P_keyEvent_t event);
+static key_state_t releaseButton(drvKeyboard_P_keyName_t key);
+
+static key_state_t stateStart			(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus);
+static key_state_t stateDebounce		(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus);
+static key_state_t statePresed			(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus);
+static key_state_t stateWaitTillReleased(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus);
+
 void drvKeyboard_P_update()
 {
 	for (drvKeyboard_P_keyName_t key = 0; key < KEY_COUNT; ++key)
 	{
 		uint8_t status = HAL_GPIO_ReadPin(keyboard[key].Port, keyboard[key].Pin);
+		key_state_t currentState = keyboard[key].PhysicalState;
+		key_state_t nextState = STATE_START;
 
-		switch (keyboard[key].PhysicalState)
+		switch (currentState)
 		{
 		case STATE_START:
-		{
-			if (status == keyboard[key].Trigger)
-			{
-				keyboard[key].StartTime = ulSysTime_GetCurrentTime();
-				keyboard[key].PhysicalState = STATE_DEBOUNCE;
-			}
-		}
+			nextState = stateStart(currentState, key, status);
 			break;
 		case STATE_DEBOUNCE:
-		{
-			if (status == keyboard[key].Trigger)
-			{
-				if (ulSysTime_IsItTime(keyboard[key].StartTime, DEBOUNCE_DELAY))
-				{
-					// It was a real press.
-					keyboard[key].PhysicalState = STATE_PRESSED;
-					keyboard[key].LogicalState = KEY_STATE_PRESSED;
-					// Try to call user's function
-					if (keyboard[key].PtrCallback)
-					{
-						keyboard[key].PtrCallback(key, KEY_EVENT_ON_PRESS);
-					}
-				}
-			}
-			else
-			{
-				// It was bounce. Start over.
-				keyboard[key].PhysicalState = STATE_START;
-			}
-		}
+			nextState = stateDebounce(currentState, key, status);
 			break;
 		case STATE_PRESSED:
-		{
-			// Check if button is still pressed.
-			if (status == keyboard[key].Trigger)
-			{
-				// Check for long press.
-				if (ulSysTime_IsItTime(keyboard[key].StartTime, LONG_PRESS_DELAY))
-				{
-					keyboard[key].PhysicalState = STATE_WAIT_TILL_RELEASED;
-					// Try to call user's function
-					if (keyboard[key].PtrCallback)
-					{
-						keyboard[key].PtrCallback(key, KEY_EVENT_LONG_PRESS);
-					}
-				}
-			}
-			else
-			{
-				// Button is released.
-				// Check for short press.
-				if (ulSysTime_IsItTime(keyboard[key].StartTime, SHORT_PRESS_DELAY))
-				{
-					keyboard[key].PhysicalState = STATE_WAIT_TILL_RELEASED;
-					// Try to call user's function
-					if (keyboard[key].PtrCallback)
-					{
-						keyboard[key].PtrCallback(key, KEY_EVENT_SHORT_PRESS);
-					}
-				}
-				else
-				{
-					// Too small press delay.
-					// Button is released.
-					// Start over.
-					keyboard[key].PhysicalState = STATE_START;
-					keyboard[key].LogicalState = KEY_STATE_RELEASED;
-					// Try to call user's function
-					if (keyboard[key].PtrCallback)
-					{
-						keyboard[key].PtrCallback(key, KEY_EVENT_RELEASED);
-					}
-
-				}
-			}
-		}
+			nextState = statePresed(currentState, key, status);
 			break;
 		case STATE_WAIT_TILL_RELEASED:
-		{
-			if (status != keyboard[key].Trigger)
-			{
-				// Button is released. Start over.
-				keyboard[key].PhysicalState = STATE_START;
-				keyboard[key].LogicalState = KEY_STATE_RELEASED;
-				// Try to call user's function
-				if (keyboard[key].PtrCallback)
-				{
-					keyboard[key].PtrCallback(key, KEY_EVENT_RELEASED);
-				}
-			}
-		}
+			nextState = stateWaitTillReleased(currentState, key, status);
 			break;
 		default:
 			keyboard[key].LogicalState = KEY_STATE_RELEASED;
 			keyboard[key].PhysicalState = STATE_START;
 			break;
 		}
+		keyboard[key].PhysicalState = nextState;
 	}
 }
 
@@ -160,4 +90,95 @@ void drvKeyboard_P_registerCallback(drvKeyboard_P_keyName_t key,
 drvKeyboard_P_keyState_t drvKeyboard_P_getKeyState(drvKeyboard_P_keyName_t key)
 {
 	return keyboard[key].LogicalState;
+}
+
+static void notify(drvKeyboard_P_keyName_t key, drvKeyboard_P_keyEvent_t event)
+{
+	// Try to call user's function
+	if (keyboard[key].PtrCallback)
+	{
+		keyboard[key].PtrCallback(key, event);
+	}
+}
+
+static key_state_t releaseButton(drvKeyboard_P_keyName_t key)
+{
+	// Start over.
+	keyboard[key].LogicalState = KEY_STATE_RELEASED;
+	notify(key, KEY_EVENT_RELEASED);
+	return STATE_START;
+}
+
+static key_state_t stateStart(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus)
+{
+	key_state_t nextState = currentState;
+	if (pinStatus == keyboard[key].Trigger)
+	{
+		keyboard[key].StartTime = ulSysTime_GetCurrentTime();
+		nextState = STATE_DEBOUNCE;
+	}
+	return nextState;
+}
+
+static key_state_t stateDebounce(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus)
+{
+	key_state_t nextState = currentState;
+	if (pinStatus == keyboard[key].Trigger)
+	{
+		if (ulSysTime_IsItTime(keyboard[key].StartTime, DEBOUNCE_DELAY))
+		{
+			// It was a real press.
+			nextState = STATE_PRESSED;
+			keyboard[key].LogicalState = KEY_STATE_PRESSED;
+			notify(key, KEY_EVENT_ON_PRESS);
+		}
+	}
+	else
+	{
+		// It was a bounce.
+		nextState = STATE_START;
+	}
+	return nextState;
+}
+
+static key_state_t statePresed(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus)
+{
+	// We save pressed state to keep checking for long press.
+	key_state_t nextState = currentState;
+	// Check if button is still pressed.
+	if (pinStatus == keyboard[key].Trigger)
+	{
+		// Check for long press.
+		if (ulSysTime_IsItTime(keyboard[key].StartTime, LONG_PRESS_DELAY))
+		{
+			nextState = STATE_WAIT_TILL_RELEASED;
+			notify(key, KEY_EVENT_LONG_PRESS);
+		}
+	}
+	else
+	{
+		// Button is released.
+		// Check for short press.
+		if (ulSysTime_IsItTime(keyboard[key].StartTime, SHORT_PRESS_DELAY))
+		{
+			nextState = STATE_WAIT_TILL_RELEASED;
+			notify(key, KEY_EVENT_SHORT_PRESS);
+		}
+		else
+		{
+			// Too small press delay.
+			nextState = releaseButton(key);
+		}
+	}
+	return nextState;
+}
+
+static key_state_t stateWaitTillReleased(key_state_t currentState, drvKeyboard_P_keyName_t key, uint8_t pinStatus)
+{
+	key_state_t nextState = currentState;
+	if (pinStatus != keyboard[key].Trigger)
+	{
+		nextState = releaseButton(key);
+	}
+	return nextState;
 }

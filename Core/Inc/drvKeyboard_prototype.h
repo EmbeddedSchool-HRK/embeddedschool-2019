@@ -38,10 +38,8 @@ typedef enum
 	KEY_COUNT
 } drvKeyboard_P_keyName_t;
 
-// Callback function callback
-typedef void (*drvKeyboard_P_callback_t)
-			 (drvKeyboard_P_keyName_t name
-			 ,drvKeyboard_P_keyEvent_t pressType);
+// Callback function
+typedef void (*drvKeyboard_P_callback_t)(drvKeyboard_P_keyName_t key, drvKeyboard_P_keyEvent_t event);
 
 void drvKeyboard_P_update();
 
