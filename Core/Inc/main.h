@@ -33,8 +33,8 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "PrivateDefines.h"
-#include "drvKeyboard.h"
-#include "ulKeyboard.h"
+#include "drvLeds.h"
+#include "drvKeyboard_prototype.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

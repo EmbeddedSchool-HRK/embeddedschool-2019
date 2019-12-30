@@ -50,7 +50,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
-
+void CallbackUpBtn(drvKeyboard_P_keyName_t key, drvKeyboard_P_keyEvent_t pressType);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -88,7 +88,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  ulKeyboard_init();
+  drvKeyboard_P_registerCallback(KEY_RIGHT, CallbackUpBtn);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,7 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  drvKeyboard_update();
+	  drvKeyboard_P_update();
   }
   /* USER CODE END 3 */
 }
@@ -180,7 +180,37 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void CallbackUpBtn(drvKeyboard_P_keyName_t key, drvKeyboard_P_keyEvent_t pressType)
+{
+	switch (pressType)
+	{
+	case KEY_EVENT_ON_PRESS:
+		drvLed_on(LED_BLUE);
+		break;
+	case KEY_EVENT_SHORT_PRESS:
+		drvLed_on(LED_ORANGE);
+		break;
+	case KEY_EVENT_LONG_PRESS:
+		drvLed_offAll();
+		break;
+	case KEY_EVENT_RELEASED:
+		drvLed_on(LED_GREEN);
+		break;
+	default:
+		// Error Handling ?
+		break;
+	}
 
+	drvKeyboard_P_keyState_t keyState = drvKeyboard_P_getKeyState(key);
+	if (keyState == KEY_STATE_PRESSED)
+	{
+		drvLed_on(LED_GREEN);
+	}
+	else if (keyState == KEY_STATE_RELEASED)
+	{
+		drvLed_off(LED_GREEN);
+	}
+}
 /* USER CODE END 4 */
 
 /**
