@@ -35,11 +35,13 @@ int32_t drvTSensor_getTemperature()
 void drvTSensor_update(ADC_HandleTypeDef* ptr_adc)
 {
 	HAL_ADC_Start(ptr_adc);
-	HAL_ADC_PollForConversion(ptr_adc, 100);
-	uint16_t raw_data_adc = getAverageMeasurement(ptr_adc);
+	if (HAL_ADC_PollForConversion(ptr_adc, 1000) == HAL_OK)
+	{
+		uint16_t raw_data_adc = getAverageMeasurement(ptr_adc);
+		temperature = (raw_data_adc - (float)(*TS_CAL_VAL_30)) * slope + TEMP_30;
+	}
 	HAL_ADC_Stop(ptr_adc);
 
-	temperature = (raw_data_adc - (float)(*TS_CAL_VAL_30)) * slope + TEMP_30;
 }
 
 
