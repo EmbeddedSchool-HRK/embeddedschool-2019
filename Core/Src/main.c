@@ -92,6 +92,7 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   ulKeyboard_init();
+  drvTSenosr_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -102,6 +103,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  drvKeyboard_update();
+	  drvTSensor_update(&hadc1);
   }
   /* USER CODE END 3 */
 }
