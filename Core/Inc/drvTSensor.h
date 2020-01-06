@@ -10,6 +10,8 @@
 
 #include "stm32f4xx_hal.h"
 
+void drvTSenosr_init();
+
 void drvTSensor_update(ADC_HandleTypeDef* ptr_adc);
 
 #endif /* INC_DRVTSENSOR_H_ */
