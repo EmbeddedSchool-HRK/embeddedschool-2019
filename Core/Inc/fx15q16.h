@@ -20,4 +20,12 @@ typedef int32_t fx15q16_t;
 #define fx15q16_into_int(x) ((int32_t)(x >> SCALE))
 #define fx15q16_into_float(x) ((float)(x / (float)(1 << SCALE)))
 
+#define FRACTIONAL_MASK (0xFFFFFFFF >> (32 - SCALE))
+//Flip fractional mask
+#define WHOLE_MASK (-1 ^ FRACTIONAL_MASK)
+
+#define fx15q16_fractional_part(x) (x & FRACTIONAL_MASK)
+#define fx15q16_whole_part(x) (x & WHOLE_MASK)
+
+
 #endif /* INC_FX15Q16_H_ */
