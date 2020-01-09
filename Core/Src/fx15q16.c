@@ -21,3 +21,7 @@ fx15q16_t fx15q16_mul(fx15q16_t lhs, fx15q16_t rhs)
     return result;
 }
 
+fx15q16_t fx15q16_div(fx15q16_t divedend, fx15q16_t divider)
+{
+    return (fx15q16_t)(((int64_t)divedend << SCALE) / divider);
+}

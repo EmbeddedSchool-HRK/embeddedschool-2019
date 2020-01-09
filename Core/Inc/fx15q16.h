@@ -30,5 +30,6 @@ typedef int32_t fx15q16_t;
 // Source:
 // http://tqfp.org/programming/chisla-s-fiksirovannoy-zapyatoy.html
 fx15q16_t fx15q16_mul(fx15q16_t lhs, fx15q16_t rhs);
+fx15q16_t fx15q16_div(fx15q16_t divedend, fx15q16_t divider);
 
 #endif /* INC_FX15Q16_H_ */
