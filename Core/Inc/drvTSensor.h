@@ -11,6 +11,8 @@
 #include "stm32f4xx_hal.h"
 #include <stdint.h>
 
+#include "fx15q16.h"
+
 void drvTSenosr_init();
 
 int32_t drvTSensor_getTemperature();

@@ -11,25 +11,28 @@
 #define TS_CAL_VAL_30 ((uint16_t*)0x1FFF7A2C)
 #define TS_CAL_VAL_110 ((uint16_t*)0x1FFF7A2E)
 
-#define TEMP_30 30
-#define TEMP_110 110
+#define TEMP_30 fx15q16_from_int(30)
+#define TEMP_110 fx15q16_from_int(110)
 
 #define MEASUREMENT_COUNT 12
 #define CORRECT_DATA_COUNT 10
 
-static float slope = 0.f;
-static float temperature = 0.f;
+static fx15q16_t slope = 0;
+static fx15q16_t temperature = 0;
 
-static float getAverageMeasurement(ADC_HandleTypeDef* ptr_adc);
+static fx15q16_t getAverageMeasurement(ADC_HandleTypeDef* ptr_adc);
 
 void drvTSenosr_init()
 {
-	slope = (float)(TEMP_110 - TEMP_30) / ((float)*TS_CAL_VAL_110 - (float)*TS_CAL_VAL_30);
+	fx15q16_t dividend = TEMP_110 - TEMP_30;
+	fx15q16_t divider = fx15q16_from_int((*TS_CAL_VAL_110 - *TS_CAL_VAL_30));
+
+	slope = fx15q16_div(dividend, divider);
 }
 
 int32_t drvTSensor_getTemperature()
 {
-	return (int32_t)temperature;
+	return fx15q16_into_int(temperature);
 }
 
 void drvTSensor_update(ADC_HandleTypeDef* ptr_adc)
@@ -37,18 +40,18 @@ void drvTSensor_update(ADC_HandleTypeDef* ptr_adc)
 	HAL_ADC_Start(ptr_adc);
 	if (HAL_ADC_PollForConversion(ptr_adc, 1000) == HAL_OK)
 	{
-		uint16_t raw_data_adc = getAverageMeasurement(ptr_adc);
-		temperature = (raw_data_adc - (float)(*TS_CAL_VAL_30)) * slope + TEMP_30;
+		fx15q16_t raw_data_adc = getAverageMeasurement(ptr_adc);
+		fx15q16_t delta_from_30_degree = raw_data_adc - fx15q16_from_int((*TS_CAL_VAL_30));
+		temperature = fx15q16_mul(delta_from_30_degree, slope) + TEMP_30;
 	}
 	HAL_ADC_Stop(ptr_adc);
 
 }
 
-
 //	Make 12 measurements.
 //	Drop max and min.
 //	Evaluate average of 10 left.
-static float getAverageMeasurement(ADC_HandleTypeDef* ptr_adc)
+static fx15q16_t getAverageMeasurement(ADC_HandleTypeDef* ptr_adc)
 {
 	uint16_t data_arr[MEASUREMENT_COUNT];
 	uint16_t max = 0;
@@ -65,6 +68,7 @@ static float getAverageMeasurement(ADC_HandleTypeDef* ptr_adc)
 	}
 	sum = sum - min - max;
 
-	float average_raw_data = (float)(sum) / (float)CORRECT_DATA_COUNT;
+	fx15q16_t average_raw_data = fx15q16_div(fx15q16_from_int(sum)
+							      ,fx15q16_from_int(CORRECT_DATA_COUNT));
 	return average_raw_data;
 }
