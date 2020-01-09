@@ -27,5 +27,8 @@ typedef int32_t fx15q16_t;
 #define fx15q16_fractional_part(x) (x & FRACTIONAL_MASK)
 #define fx15q16_whole_part(x) (x & WHOLE_MASK)
 
+// Source:
+// http://tqfp.org/programming/chisla-s-fiksirovannoy-zapyatoy.html
+fx15q16_t fx15q16_mul(fx15q16_t lhs, fx15q16_t rhs);
 
 #endif /* INC_FX15Q16_H_ */
