@@ -13,7 +13,7 @@
 #define ADC_VOLTAGE_KOEF 0.0008
 
 
-uint32_t drvTemperatureSensor_getTemperature(ADC_HandleTypeDef * ptr_hadc);
+int32_t drvTemperatureSensor_getTemperature(ADC_HandleTypeDef * ptr_hadc);
 
 
 

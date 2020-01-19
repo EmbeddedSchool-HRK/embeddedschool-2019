@@ -115,7 +115,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
    drv_ActivateAllLeds(5500, 5000);
    ulKeyboard_init();
-
+   int32_t currentTemp = 0;
   while (1)
   {
     /* USER CODE END WHILE */
@@ -125,7 +125,7 @@ int main(void)
  //   HeartBeat_Run(1500, 1500);
    // drv_RunningLeds(4000, 3000);
     drvKeyboard_run();
-    drvTemperatureSensor_getTemperature(&hadc1);
+    currentTemp = drvTemperatureSensor_getTemperature(&hadc1);
   }
 
 }
