@@ -10,6 +10,7 @@
 #include "stm32f4xx_hal.h"
 #define ADC_SAMPLE_COUNT_12 12
 #define ADC_SAMPLE_COUNT_10 10
+#define ADC_VOLTAGE_KOEF 0.0008
 
 
 uint32_t drvTemperatureSensor_getTemperature(ADC_HandleTypeDef * ptr_hadc);
