@@ -21,7 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
+#include "drvTemperatureSensor.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -115,6 +115,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
    drv_ActivateAllLeds(5500, 5000);
    ulKeyboard_init();
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -124,14 +125,14 @@ int main(void)
  //   HeartBeat_Run(1500, 1500);
    // drv_RunningLeds(4000, 3000);
     drvKeyboard_run();
-
+    drvTemperatureSensor_getTemperature(&hadc1);
   }
 
 }
 
 
   /* USER CODE END 3 */
-}
+
 
 /**
   * @brief System Clock Configuration
