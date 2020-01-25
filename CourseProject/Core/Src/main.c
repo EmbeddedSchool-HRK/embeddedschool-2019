@@ -69,7 +69,7 @@ void MX_USB_HOST_Process(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+static int32_t currentTemp = 0;
 
 /* USER CODE END 0 */
 
@@ -115,7 +115,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
    drv_ActivateAllLeds(5500, 5000);
    ulKeyboard_init();
-   int32_t currentTemp = 0;
+
   while (1)
   {
     /* USER CODE END WHILE */
