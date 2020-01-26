@@ -9,10 +9,10 @@
 
 led_t led[LED_Count] = {
     //declare the structure with ports and pins for every of the four user_LEDs
-    {GPIOD, 15}, // Blue LED
-    {GPIOD, 14}, // Red LED
-    {GPIOD, 13}, // Orange LED
-    {GPIOD, 12}  // Green LED
+    {GPIOD, GPIO_PIN_15}, // Blue LED
+    {GPIOD, GPIO_PIN_14}, // Red LED
+    {GPIOD, GPIO_PIN_13}, // Orange LED
+    {GPIOD, GPIO_PIN_12}  // Green LED
 };
 
 void drvLED_on(ledlist_t LED_name)
