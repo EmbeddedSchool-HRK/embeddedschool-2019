@@ -38,7 +38,7 @@
 /* USER CODE BEGIN PD */
 #define DUTYCYCLE 100
 #define PERIOD 1000
-#define RUN_DELAY 200 // delay for runningLEDs function
+#define RUN_DELAY 500 // delay for runningLEDs function
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -122,7 +122,7 @@ int main(void)
   while (1)
   {
     Heartbeat(DUTYCYCLE, PERIOD);
- //   LEDsRun(RUN_DELAY, LED_sequence, 5);
+    LEDsRun(RUN_DELAY, LED_sequence, 5);
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
 
