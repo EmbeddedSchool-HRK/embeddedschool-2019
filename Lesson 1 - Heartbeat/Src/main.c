@@ -36,9 +36,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DUTYCYCLE 500
+#define DUTYCYCLE 100
 #define PERIOD 1000
-#define RUN_DELAY 200 // delay for runningLEDs function
+#define RUN_DELAY 500 // delay for runningLEDs function
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -116,7 +116,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+ 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
