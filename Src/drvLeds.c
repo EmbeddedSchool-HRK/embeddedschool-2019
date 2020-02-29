@@ -25,7 +25,7 @@ void drvLeds_on(ledsList_t ledName)
 	HAL_GPIO_WritePin(leds[ledName].port, leds[ledName].pin, GPIO_PIN_SET);
 }
 
-void drveds_off(ledsList_t ledName)
+void drvLeds_off(ledsList_t ledName)
 {
 	HAL_GPIO_WritePin(leds[ledName].port, leds[ledName].pin, GPIO_PIN_RESET);
 }

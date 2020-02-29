@@ -18,7 +18,7 @@ typedef enum {
 
 void drvLeds_on(ledsList_t ledName);
 
-void drveds_off(ledsList_t ledName);
+void drvLeds_off(ledsList_t ledName);
 
 
 

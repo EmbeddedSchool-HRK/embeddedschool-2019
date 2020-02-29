@@ -13,7 +13,7 @@ void RunningLeds(uint16_t dutyCycle, uint16_t period, uint8_t ledqueue[3])
 	{
 	drvLeds_on(ledqueue[i]);
 	HAL_Delay(dutyCycle);
-	drveds_off(ledqueue[i]);
+	drvLeds_off(ledqueue[i]);
 	HAL_Delay(period - dutyCycle);
 	}
 }
