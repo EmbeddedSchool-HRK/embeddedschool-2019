@@ -55,6 +55,7 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 uint8_t ledqueue[3] ={LED_BLUE,LED_ORANGE,LED_GREEN};
+uint8_t led_amount = sizeof(ledqueue)/sizeof(uint8_t);
 
 /* USER CODE END PV */
 
@@ -121,7 +122,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     Heartbeat_Run(dutyCycle, period);		//run heartbeat function
-    RunningLeds(dutyCycle, period, ledqueue); // run runningleds function
+    RunningLeds(dutyCycle, period, ledqueue, led_amount); // run runningleds function
   
   }
   /* USER CODE END 3 */
