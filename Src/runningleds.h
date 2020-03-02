@@ -11,6 +11,6 @@
 #include "main.h"
 #include "drvLeds.h"
 
-void RunningLeds(uint16_t dutyCycle, uint16_t period, uint8_t ledqueue[3]);
+void RunningLeds(uint16_t dutyCycle, uint16_t period, uint8_t ledqueue[3], uint8_t led_amount);
 
 #endif /* RUNNINGLEDS_H_ */
